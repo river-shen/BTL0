@@ -304,6 +304,8 @@ namespace BTL0
 			Console.WriteLine($"Name of School: {student.SchoolName}");
 			Console.WriteLine($"Year of Admission: {student.YearOfAdmission}");
 			Console.WriteLine($"GPA: {student.GPA}");
+			student.rank = student.setRank(student.GPA);
+			Console.WriteLine($"Rank: {student.rank}");
 
 			Console.WriteLine("*********************************");
 		}
@@ -623,6 +625,44 @@ namespace BTL0
 				}
 			}
 			return IsDeleted;
+		}
+
+		public void DisplayByRank()
+		{
+			int countStudent = CountStudent();
+			List<string> listRank = new List<string>() {
+				"POOR",
+				"WEAK",
+				"AVERAGE",
+				"GOOD",
+				"VERY_GOOD",
+				"EXCELLENT"
+			};
+			List<string> rankOutOfInput = new List<string>();
+
+			var rankFromInput = from student in students
+						 group student by student.rank into gr
+						 orderby gr.Key descending
+						 select gr;
+			rankFromInput = rankFromInput.OrderByDescending(s => s.Count());
+
+			foreach (var gr in rankFromInput)
+			{
+				rankOutOfInput.Add(Convert.ToString(gr.Key));
+			}
+			
+			var result = listRank.Except(rankOutOfInput).ToList();
+
+			foreach (var gr in rankFromInput)
+			{
+                Console.WriteLine(gr.Key + "   " + (100 * gr.Count() / countStudent) + "%");
+			}
+
+			foreach (var i in result)
+			{
+				Console.WriteLine(i + "   0%");
+			}
+
 		}
 	}
 }

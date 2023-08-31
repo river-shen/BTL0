@@ -15,11 +15,12 @@
 				Console.WriteLine("** 2. Find Student By ID                   **");
 				Console.WriteLine("** 3. Update Student                       **");
 				Console.WriteLine("** 4. Delete Student                       **");
-				Console.WriteLine("** 9. Show Students                        **");
+                Console.WriteLine("** 5. Display by rank                      **");
+                Console.WriteLine("** 9. Show Students                        **");
 				//
 				
 				Console.WriteLine("*********************************************");
-				Console.WriteLine("** 0.Exit                                  **");
+				Console.WriteLine("** 0. Exit                                  **");
 				Console.Write("\nEnter your option: ");
 				int key = Convert.ToInt32(Console.ReadLine());
 				switch (key)
@@ -95,6 +96,19 @@
 							{
 								Console.WriteLine("Invalid");
 							}
+						}
+						else
+						{
+							Console.WriteLine("Khong co du lieu phu hop");
+						}
+						break;
+
+					case 5:
+						if (manageStudent.CountStudent() > 0)
+						{
+							Console.WriteLine("\n5. Display by rank");
+							int countStudent = manageStudent.CountStudent();
+							manageStudent.DisplayByRank();
 						}
 						else
 						{
