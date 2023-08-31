@@ -609,5 +609,20 @@ namespace BTL0
 				Console.WriteLine($"Invalid ID");
 			}
 		}
+
+		public bool DeleteStudent(int id)
+		{
+			bool IsDeleted = false;
+			Student student = FindByID(id);
+			if (student != null)
+			{
+				IsDeleted = students.Remove(student);
+				for (int i=id; i<students.Count; i++)
+				{
+					students[i].ID --;
+				}
+			}
+			return IsDeleted;
+		}
 	}
 }
