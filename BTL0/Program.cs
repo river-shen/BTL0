@@ -1,4 +1,5 @@
-﻿namespace BTL0
+﻿
+namespace BTL0
 {
 	public class Program
 	{
@@ -16,7 +17,9 @@
 				Console.WriteLine("** 3. Update Student                       **");
 				Console.WriteLine("** 4. Delete Student                       **");
                 Console.WriteLine("** 5. Display by rank                      **");
-                Console.WriteLine("** 9. Show Students                        **");
+                Console.WriteLine("** 6. Display by GPA                       **");
+                Console.WriteLine("** 7. Show Studen by Rank                  **");
+                Console.WriteLine("** 8. Show Students                        **");
 				//
 				
 				Console.WriteLine("*********************************************");
@@ -26,6 +29,17 @@
 				switch (key)
 				{
 					case 0:
+						string Dir = System.IO.Directory.GetCurrentDirectory();
+						string path = Dir + "\\StudentData.txt";
+						Console.WriteLine(path);
+						bool test = manageStudent.SaveFile(manageStudent.getStudents(), path);
+						if (test)
+						{
+                            Console.WriteLine("Write Successfully");
+                        } else
+						{
+                            Console.WriteLine("Error");
+                        }
 						return;
 
 					case 1:
@@ -107,7 +121,6 @@
 						if (manageStudent.CountStudent() > 0)
 						{
 							Console.WriteLine("\n5. Display by rank");
-							int countStudent = manageStudent.CountStudent();
 							manageStudent.DisplayByRank();
 						}
 						else
@@ -116,7 +129,64 @@
 						}
 						break;
 
-					case 9:
+					case 6:
+						if (manageStudent.CountStudent() > 0)
+						{
+							Console.WriteLine("\n6. Display by GPA");
+							manageStudent.DisplayByGPA();
+						}
+						else
+						{
+							Console.WriteLine("Khong co du lieu phu hop");
+						}
+						break;
+
+					case 7:
+						if (manageStudent.CountStudent() > 0)
+						{
+							Console.WriteLine("\n7. Show Student By Rank");
+                            Console.WriteLine("");
+                            Console.WriteLine("1. EXCELLENT");
+                            Console.WriteLine("2. VERY_GOOD");
+                            Console.WriteLine("3. GOOD");
+                            Console.WriteLine("4. AVERAGE");
+                            Console.WriteLine("5. WEAK");
+                            Console.WriteLine("6. POOR");
+                            Console.WriteLine("---------------------------");
+                            Console.Write("Enter option: ");
+							int optionInput = Convert.ToInt32(Console.ReadLine());
+							switch(optionInput)
+							{
+								case 1:
+									manageStudent.ShowStudenByRank(Rank.EXCELLENT);
+									break;
+								case 2:
+									manageStudent.ShowStudenByRank(Rank.VERY_GOOD);
+									break;
+								case 3:
+									manageStudent.ShowStudenByRank(Rank.GOOD);
+									break;
+								case 4:
+									manageStudent.ShowStudenByRank(Rank.AVERAGE);
+									break;
+								case 5:
+									manageStudent.ShowStudenByRank(Rank.WEAK);
+									break;
+								case 6:
+									manageStudent.ShowStudenByRank(Rank.POOR);
+									break;
+								default:
+                                    Console.WriteLine("INVALID!");
+                                    break;
+							}
+                        }
+						else
+						{
+							Console.WriteLine("Khong co du lieu phu hop");
+						}
+						break;
+
+					case 8:
 						if (manageStudent.CountStudent() > 0)
 						{
 							Console.WriteLine("\n9. Show Students");

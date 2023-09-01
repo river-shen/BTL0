@@ -39,11 +39,14 @@ namespace BTL0
 				rank = Rank.WEAK;
 			} else if (gpa >=5 && gpa < 6.5)
 			{
-				rank = Rank.GOOD;
+				rank = Rank.AVERAGE;
 			} else if (gpa >=6.5 && gpa < 7.5)
 			{
-				rank = Rank.VERY_GOOD;
+				rank = Rank.GOOD;
 			} else if (gpa >= 7.5 && gpa < 9)
+			{
+				rank = Rank.VERY_GOOD;
+			} else if (gpa >= 9)
 			{
 				rank = Rank.EXCELLENT;
 			}

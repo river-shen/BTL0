@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 
 namespace BTL0
@@ -655,14 +656,77 @@ namespace BTL0
 
 			foreach (var gr in rankFromInput)
 			{
-                Console.WriteLine(gr.Key + "   " + (100 * gr.Count() / countStudent) + "%");
+                Console.WriteLine("{0,-10}   {1,5}%", gr.Key, (100 * gr.Count() / countStudent));
 			}
 
 			foreach (var i in result)
 			{
-				Console.WriteLine(i + "   0%");
+				Console.WriteLine("{0,-10}       0%",i);
 			}
 
 		}
+		public void DisplayByGPA()
+		{
+			var rankFromInput = from student in students
+								group student by student.GPA into gr
+								orderby gr.Key descending
+								select gr;
+
+			foreach (var gr in rankFromInput)
+			{
+				Console.WriteLine("{0,-5}  {1,5}" , gr.Key, gr.Count());
+			}
+		}
+		public void ShowStudenByRank(Rank rank)
+		{
+			var result = from student in students
+						 where student.rank == rank
+						 select student;
+			if (result != null && result.Count() > 0)
+			{
+				foreach (var student in result)
+				{
+					ShowStudent(student);
+				}
+			} else
+			{
+                Console.WriteLine($"No student has rank {rank}");
+            }
+		}
+
+		public bool SaveFile(List<Student> students, string path)
+		{
+			try
+			{
+				StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
+				foreach (Student item in students)
+				{
+					string line = item.ID + "\n" + item.Name + "\n" +
+									item.DateOfBirth.ToString("MM/dd/yyyy") + "\n" +
+									item.Address + "\n" + item.Height.ToString() + "\n" +
+									item.Weight.ToString() + "\n" + item.StudentID + "\n" +
+									item.SchoolName + "\n" + item.YearOfAdmission.ToString()
+									+ "\n" + item.GPA.ToString();
+					sw.WriteLine(line);
+				}
+				sw.Close();
+				return true;
+			} 
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		public static List<Student> ReadFromFile(string path)
+		{
+			try
+			{
+
+			}
+			catch (Exception ex) { throw ex; }
+			return students;
+		}
+
 	}
 }
