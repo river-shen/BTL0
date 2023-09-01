@@ -23,7 +23,6 @@ namespace BTL0
 		public int GenerateID()
 		{
 			int max = 0;
-			Console.WriteLine(students.Count);
 
 			if (students != null && students.Count() > 0)
 			{
@@ -265,7 +264,7 @@ namespace BTL0
 					if (checkIsNumberDouble(input))
 					{
 						inputNumberDouble = Convert.ToDouble(input);
-						if (inputNumberDouble < StudentConstant.MAX_GPA && inputNumberDouble > StudentConstant.MIN_GPA)
+						if (inputNumberDouble <= StudentConstant.MAX_GPA && inputNumberDouble >= StudentConstant.MIN_GPA)
 						{
 							checkNull = false;
 							student.GPA = inputNumberDouble;
@@ -746,6 +745,5 @@ namespace BTL0
 			catch (Exception ex)
 			{ throw ex; }
 		}
-
 	}
 }
