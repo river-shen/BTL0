@@ -5,8 +5,18 @@ namespace BTL0
 	{
 		public static void Main(string[] args)
 		{
+
 			ManageStudent manageStudent = new ManageStudent();
-			while(true)
+
+			string ReadDir = System.IO.Directory.GetCurrentDirectory();
+			string Readpath = ReadDir + "\\StudentData.txt";
+			Console.WriteLine(Readpath);
+			manageStudent.ReadFromFile(Readpath);
+			manageStudent.ShowStudents(manageStudent.getStudents());
+            Console.WriteLine("Read data successfully");
+            Console.WriteLine("------------------------------------------------");
+
+            while (true)
 			{
 				Console.WriteLine("\nMANAGE STUDENT C#");
 				Console.WriteLine("*********************************************");
@@ -31,6 +41,7 @@ namespace BTL0
 					case 0:
 						string Dir = System.IO.Directory.GetCurrentDirectory();
 						string path = Dir + "\\StudentData.txt";
+						Console.Write(path);
 						Console.WriteLine(path);
 						bool test = manageStudent.SaveFile(manageStudent.getStudents(), path);
 						if (test)
@@ -189,7 +200,7 @@ namespace BTL0
 					case 8:
 						if (manageStudent.CountStudent() > 0)
 						{
-							Console.WriteLine("\n9. Show Students");
+							Console.WriteLine("\n8. Show Students");
 							manageStudent.ShowStudents(manageStudent.getStudents());
 						}
 						else

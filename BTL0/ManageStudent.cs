@@ -667,6 +667,7 @@ namespace BTL0
 		}
 		public void DisplayByGPA()
 		{
+			int countStudent = CountStudent();
 			var rankFromInput = from student in students
 								group student by student.GPA into gr
 								orderby gr.Key descending
@@ -674,7 +675,7 @@ namespace BTL0
 
 			foreach (var gr in rankFromInput)
 			{
-				Console.WriteLine("{0,-5}  {1,5}" , gr.Key, gr.Count());
+				Console.WriteLine("{0,-5}  {1,5}%" , gr.Key, 100*gr.Count()/countStudent);
 			}
 		}
 		public void ShowStudenByRank(Rank rank)
@@ -701,7 +702,7 @@ namespace BTL0
 				StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
 				foreach (Student item in students)
 				{
-					string line = item.ID + "\n" + item.Name + "\n" +
+					string line = (item.ID+1) + "\n" + item.Name + "\n" +
 									item.DateOfBirth.ToString("MM/dd/yyyy") + "\n" +
 									item.Address + "\n" + item.Height.ToString() + "\n" +
 									item.Weight.ToString() + "\n" + item.StudentID + "\n" +
@@ -718,14 +719,32 @@ namespace BTL0
 			}
 		}
 
-		public static List<Student> ReadFromFile(string path)
+		public void ReadFromFile(string path)
 		{
 			try
 			{
-
+				StreamReader sr = new StreamReader(path, Encoding.UTF8);
+				string line = sr.ReadLine();
+				while (line !=null)
+				{
+					Student student = new Student();
+					student.ID = int.Parse(line) -1;
+					student.Name = sr.ReadLine().ToString();
+					student.DateOfBirth = DateTime.Parse(sr.ReadLine());
+					student.Address = sr.ReadLine().ToString();
+					student.Height = double.Parse(sr.ReadLine());
+					student.Weight = double.Parse(sr.ReadLine());
+					student.StudentID = sr.ReadLine().ToString();
+					student.SchoolName = sr.ReadLine().ToString();
+					student.YearOfAdmission = int.Parse(sr.ReadLine());
+					student.GPA = double.Parse(sr.ReadLine());
+					students.Add(student);
+					line = sr.ReadLine();
+				}
+				sr.Close();
 			}
-			catch (Exception ex) { throw ex; }
-			return students;
+			catch (Exception ex)
+			{ throw ex; }
 		}
 
 	}
