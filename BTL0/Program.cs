@@ -5,18 +5,23 @@ namespace BTL0
 	{
 		public static void Main(string[] args)
 		{
-
 			ManageStudent manageStudent = new ManageStudent();
 
-			string ReadDir = System.IO.Directory.GetCurrentDirectory();
-			string Readpath = ReadDir + "\\StudentData.txt";
-			Console.WriteLine(Readpath);
-			manageStudent.ReadFromFile(Readpath);
+			/*string ReadDir = System.IO.Directory.GetCurrentDirectory();
+			string Readpath = ReadDir + "\\StudentData.txt";*/
+
+			var directory = System.AppContext.BaseDirectory.Split(Path.DirectorySeparatorChar);
+			var slice = new ArraySegment<string>(directory, 0, directory.Length - 4);
+			var path = Path.Combine(slice.ToArray()) + "\\StudentData.txt";
+			Console.WriteLine($"Path of Program.cs is: {path}");
+			manageStudent.ReadFromFile(path);
+
 			manageStudent.ShowStudents(manageStudent.getStudents());
             Console.WriteLine("Read data successfully");
             Console.WriteLine("------------------------------------------------");
 
-            while (true)
+			
+			while (true)
 			{
 				Console.WriteLine("\nMANAGE STUDENT C#");
 				Console.WriteLine("*********************************************");
@@ -39,14 +44,11 @@ namespace BTL0
 				switch (key)
 				{
 					case 0:
-						string Dir = System.IO.Directory.GetCurrentDirectory();
-						string path = Dir + "\\StudentData.txt";
-						Console.Write(path);
-						Console.WriteLine(path);
 						bool test = manageStudent.SaveFile(manageStudent.getStudents(), path);
 						if (test)
 						{
                             Console.WriteLine("Write Successfully");
+                            Console.WriteLine("--------------------------------");
                         } else
 						{
                             Console.WriteLine("Error");
