@@ -1,14 +1,4 @@
 ﻿1
-Nguyen Tien Lam
-05/31/2003
-Tu Son
-180
-70
-1234567890
-HUST
-2021
-8.5
-2
 Pham than Binh
 02/28/2003
 Tu Son
@@ -18,3 +8,43 @@ Tu Son
 HUST
 2021
 3.2
+2
+Tran Minh Chien
+02/28/2003
+Tu Son
+180
+70
+2021532100
+HUST
+2021
+1.2
+3
+Nguyen Tien Lam
+05/31/2003
+Tu Son
+180
+78
+1234567890
+HUST
+2021
+9.9
+4
+Nguyen Tien Lam
+05/31/2003
+Tu Son
+180
+70
+3456789012
+HUST
+2021
+6.5
+5
+Binh Ngu
+02/09/2003
+Tu Son
+180
+70
+4567890123
+HUST
+2021
+5.5
