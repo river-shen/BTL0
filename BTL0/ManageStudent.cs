@@ -195,10 +195,17 @@ namespace BTL0
 			while (checkNull)
 			{
 				string input = Console.ReadLine();
-				if (checkTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_STUDENTID)
+				if (checkTextNull(input) && input.Length == StudentConstant.LENGTH_STUDENTID)
 				{
-					checkNull = false;
-					student.StudentID = Convert.ToString(input);
+					List<Student> searchResult = FindByStudentID(input);
+					if (searchResult.Count > 0)
+					{
+                        Console.Write("Input is existed! Enter again: ");
+					} else
+					{
+						checkNull = false;
+						student.StudentID = Convert.ToString(input);
+					}
 				}
 				else
 				{
@@ -288,6 +295,22 @@ namespace BTL0
 			Console.WriteLine("Add Student: ");
 			ShowStudent(student);
 			students.Add(student);
+		}
+
+		public List<Student> FindByStudentID(string studentID)
+		{
+			List<Student> searchResult = new List<Student>();
+			if (students != null && students.Count > 0)
+			{
+				foreach (Student student in students)
+				{
+					if (student.StudentID.ToUpper().Contains(studentID.ToUpper()))
+					{
+						searchResult.Add(student);
+					}
+				}
+			}
+			return searchResult;
 		}
 
 		public void ShowStudent(Student student)
@@ -502,10 +525,18 @@ namespace BTL0
 						while (checkNull)
 						{
 							string input = Console.ReadLine();
-							if (checkTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_STUDENTID)
+							if (checkTextNull(input) && input.Length == StudentConstant.LENGTH_STUDENTID)
 							{
-								checkNull = false;
-								student.StudentID = Convert.ToString(input);
+								List<Student> searchResult = FindByStudentID(input);
+								if (searchResult.Count > 0)
+								{
+									Console.Write("Input is existed! Enter again: ");
+								}
+								else
+								{
+									checkNull = false;
+									student.StudentID = Convert.ToString(input);
+								}
 							}
 							else
 							{

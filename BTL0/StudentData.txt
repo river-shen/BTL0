@@ -1,180 +1,20 @@
 ﻿1
-Pham Thanh Binh
+Nguyen Tien Lam
 05/31/2003
 Tu Son
 180
-78
-20215606
+70
+1234567890
 HUST
 2021
-9.5
+8.5
 2
-Pham Thanh Binh
-05/31/2003
+Pham than Binh
+02/28/2003
 Tu Son
 180
-78
-20215606
+70
+2345678901
 HUST
 2021
-8
-3
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-8
-4
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-7
-5
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-7
-6
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-5
-7
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-5
-8
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-4.5
-9
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-4.5
-10
-PhamThanhBing
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-9.5
-11
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-9.5
-12
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-8
-13
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-8
-14
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-7
-15
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-7
-16
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-5
-17
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-5
-18
-Pham Thanh Binh
-05/31/2003
-Tu Son
-180
-78
-20215606
-HUST
-2021
-9.9
+3.2
