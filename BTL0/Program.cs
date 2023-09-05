@@ -39,8 +39,36 @@ namespace BTL0
 				
 				Console.WriteLine("*********************************************");
 				Console.WriteLine("** 0. Exit                                  **");
+				// Console.Write("\nEnter your option: ");
+				// int key = Convert.ToInt32(Console.ReadLine());
+
+				int key = 0;
+				bool checkNull = true;
+				int inputNumberInt;
 				Console.Write("\nEnter your option: ");
-				int key = Convert.ToInt32(Console.ReadLine());
+				while (checkNull)
+				{
+					string input = Console.ReadLine();
+					if (manageStudent.checkTextNull(input))
+					{
+						if (manageStudent.checkIsNumberInt(input))
+						{
+							inputNumberInt = Convert.ToInt32(input);
+							checkNull = false;
+							key = inputNumberInt;
+						}
+						else
+						{
+							Console.Write("Not a number! Enter again: ");
+						}
+					}
+					else
+					{
+						Console.Write("Invalid Input! Enter again: ");
+					}
+				}
+				checkNull = true;
+
 				switch (key)
 				{
 					case 0:
@@ -210,6 +238,9 @@ namespace BTL0
 							Console.WriteLine("Khong co du lieu phu hop");
 						}
 						break;
+					default:
+                        Console.WriteLine("Enter number from 0 to 8");
+                        break;
 				}
 			}
 		}
