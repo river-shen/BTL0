@@ -16,7 +16,7 @@ namespace BTL0.Constant
         public readonly static double MIN_HEIGHT = 50.0;
         public readonly static double MAX_WEIGHT = 1000.0;
         public readonly static double MIN_WEIGHT = 5.0;
-        public readonly static int LENGTH_STUDENTID = 10;
+        public readonly static int LENGTH_STUDENTCODE = 10;
         public readonly static int MAX_LENGTH_SCHOOL_NAME = 200;
         public readonly static int MIN_YEAR = 1900;
         public readonly static double MIN_GPA = 0.0;

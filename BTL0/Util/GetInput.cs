@@ -13,8 +13,10 @@ namespace BTL0.Util
 	{
 		public static string GetName()
 		{
-			string input = null;
+			string? input = null;
 			bool checkNull = true;
+
+			Console.Write("Enter Student Name: ");
 			while (checkNull)
 			{
 				input = Console.ReadLine();
@@ -25,7 +27,7 @@ namespace BTL0.Util
 				}
 				else
 				{
-					Console.Write("Invalid Input! Enter again: ");
+					Console.Write($"Must smaller than {StudentConstant.MAX_LENGTH_NAME} characters and not null! Enter again: ");
 				}
 			}
 			return input;
@@ -34,6 +36,8 @@ namespace BTL0.Util
 		{
 			DateTime inputDateTime = DateTime.Now;
 			bool checkDateTime = true;
+
+			Console.Write("Enter student's birth date (as mm/dd/yyyy): ");
 			while (checkDateTime)
 			{
 				string input = Console.ReadLine();
@@ -53,6 +57,8 @@ namespace BTL0.Util
 		{
 			string input = null;
 			bool checkNull = true;
+
+			Console.Write("Enter Address: ");
 			while (checkNull)
 			{
 				input = Console.ReadLine();
@@ -63,7 +69,7 @@ namespace BTL0.Util
 				}
 				else
 				{
-					Console.Write("Invalid Input! Enter again: ");
+					Console.Write($"Must smaller than {StudentConstant.MAX_LENGTH_ADDRESS} characters and not null! Enter again: ");
 				}
 			}
 			return input;
@@ -72,6 +78,8 @@ namespace BTL0.Util
 		{
 			double inputNumberDouble = 0;
 			bool checkNull = true;
+
+			Console.Write("Enter Height: ");
 			while (checkNull)
 			{
 				string input = Console.ReadLine();
@@ -86,7 +94,7 @@ namespace BTL0.Util
 						}
 						else
 						{
-							Console.Write("Must from 50cm to 300cm! Enter again: ");
+							Console.Write($"Must from {StudentConstant.MIN_HEIGHT}cm to {StudentConstant.MAX_HEIGHT}cm! Enter again: ");
 						}
 					}
 					else
@@ -105,6 +113,8 @@ namespace BTL0.Util
 		{
 			double inputNumberDouble = 0;
 			bool checkNull = true;
+
+			Console.Write("Enter Weight: ");
 			while (checkNull)
 			{
 				string input = Console.ReadLine();
@@ -119,7 +129,7 @@ namespace BTL0.Util
 						}
 						else
 						{
-							Console.Write("Must from 5kg to 1000kg! Enter again: ");
+							Console.Write($"Must from {StudentConstant.MIN_WEIGHT}kg to {StudentConstant.MAX_HEIGHT}kg! Enter again: ");
 						}
 					}
 					else
@@ -138,17 +148,19 @@ namespace BTL0.Util
 		{
 			string input = null;
 			bool checkNull = true;
+
+			Console.Write("Enter Student ID: ");
 			while (checkNull)
 			{
 				input = Console.ReadLine();
-				if (Validation.checkTextNull(input) && input.Length == StudentConstant.LENGTH_STUDENTID)
+				if (Validation.checkTextNull(input) && input.Length == StudentConstant.LENGTH_STUDENTCODE)
 				{
 					checkNull = false;
 					input = Convert.ToString(input);
 				}
 				else
 				{
-					Console.Write("Invalid Input! Enter again: ");
+					Console.Write($"Must have {StudentConstant.LENGTH_STUDENTCODE} characters! Enter again: ");
 				}
 			}
 			return input;
@@ -157,6 +169,8 @@ namespace BTL0.Util
 		{
 			string input = null;
 			bool checkNull = true;
+
+			Console.Write("Enter name of School: ");
 			while (checkNull)
 			{
 				input = Console.ReadLine();
@@ -167,7 +181,7 @@ namespace BTL0.Util
 				}
 				else
 				{
-					Console.Write("Invalid Input! Enter again: ");
+					Console.Write($"Must smaller than {StudentConstant.MAX_LENGTH_SCHOOL_NAME} characters! Enter again: ");
 				}
 			}
 			return input;
@@ -177,6 +191,8 @@ namespace BTL0.Util
 			string input = null;
 			int inputNumberInt = 0;
 			bool checkNull = true;
+
+			Console.Write("Enter year of addmission: ");
 			while (checkNull)
 			{
 				input = Console.ReadLine();
@@ -191,7 +207,7 @@ namespace BTL0.Util
 						}
 						else
 						{
-							Console.Write($"Must from 1900 to {DateTime.Now.Year}! Enter again: ");
+							Console.Write($"Must from {StudentConstant.MIN_YEAR} to {DateTime.Now.Year}! Enter again: ");
 						}
 					}
 					else
@@ -210,6 +226,8 @@ namespace BTL0.Util
 		{
 			double inputNumberDouble = 0;
 			bool checkNull = true;
+
+			Console.Write("Enter GPA: ");
 			while (checkNull)
 			{
 				string? input = Console.ReadLine();
@@ -224,7 +242,7 @@ namespace BTL0.Util
 						}
 						else
 						{
-							Console.Write("Must from 0.0 to 10.0! Enter again: ");
+							Console.Write($"Must from {StudentConstant.MIN_GPA} to {StudentConstant.MAX_GPA}! Enter again: ");
 						}
 					}
 					else

@@ -50,51 +50,38 @@ namespace BTL0.Controller
             return count;
         }
 
-
+        public String CheckStudentID()
+        {
+			while (true)
+			{
+				string studentCode = GetInput.GetStudentID();
+				List<Student> searchResult = FindByStudentID(studentCode);
+				if (searchResult.Count > 0)
+				{
+					Console.Write("Input is existed! Enter again: ");
+					continue;
+				}
+				else
+				{
+                    return studentCode;
+				}
+                return studentCode;
+			}
+		}
 
         public void AddStudent()
         {
             Student student = new Student();
+
             student.ID = GenerateID();
-
-			Console.Write("Enter Student Name: ");
             student.Name = GetInput.GetName();
-
-            Console.Write("Enter student's birth date (as mm/dd/yyyy): ");
 			student.DateOfBirth = GetInput.GetDateTime();
-
-            Console.Write("Enter Address: ");
             student.Address = GetInput.GetAdress();
-
-            Console.Write("Enter Height: ");
             student.Height = GetInput.GetHeight();
-
-            Console.Write("Enter Weight: ");
             student.Weight = GetInput.GetWeight();
-
-            Console.Write("Enter Student ID: ");
-            while (true)
-            {
-				string inputStudentCode = GetInput.GetStudentID();
-				List<Student> searchResult = FindByStudentID(inputStudentCode);
-				if (searchResult.Count > 0)
-				{
-					Console.Write("Input is existed! Enter again: ");
-                    continue;
-				}else
-                {
-					student.StudentCode = inputStudentCode;
-					break;
-                }
-			}
-
-            Console.Write("Enter name of School: ");
+            student.StudentCode = CheckStudentID();
             student.SchoolName = GetInput.GetSchoolName();
-
-            Console.Write("Enter year of addmission: ");
             student.YearOfAdmission = GetInput.GetYearOfAdmission();
-
-            Console.Write("Enter GPA: ");
             student.GPA = GetInput.GetGPA();
 
             Console.WriteLine("Add Student: ");
@@ -196,61 +183,38 @@ namespace BTL0.Controller
                 switch (choice)
                 {
                     case 1:
-                        Console.Write("Enter Student Name: ");
 						student.Name = GetInput.GetName();
                         break;
 
 					case 2:
-                        Console.Write("Enter student's birth date (as mm/dd/yyyy): ");
 						student.DateOfBirth = GetInput.GetDateTime();
 						break;
 
                     case 3:
-						Console.Write("Enter Address: ");
 						student.Address = GetInput.GetAdress();
 						break;
 
                     case 4:
-                        Console.Write("Enter Height: ");
 						student.Height = GetInput.GetHeight();
 						break;
 
                     case 5:
-                        Console.Write("Enter Weight: ");
 						student.Weight = GetInput.GetWeight();
 						break;
 
                     case 6:
-                        Console.Write("Enter Student Code: ");
-						while (true)
-						{
-							string inputStudentCode = GetInput.GetStudentID();
-							List<Student> searchResult = FindByStudentID(inputStudentCode);
-							if (searchResult.Count > 0)
-							{
-								Console.Write("Input is existed! Enter again: ");
-								continue;
-							}
-							else
-							{
-								student.StudentCode = inputStudentCode;
-								break;
-							}
-						}
+						student.StudentCode = CheckStudentID();
 						break;
 
                     case 7:
-                        Console.Write("Enter Name of School: ");
 						student.SchoolName = GetInput.GetSchoolName();
 						break;
 
                     case 8:
-						Console.Write("Enter year of addmission: ");
 						student.YearOfAdmission = GetInput.GetYearOfAdmission();
 						break;
 
                     case 9:
-						Console.Write("Enter GPA: ");
 						student.GPA = GetInput.GetGPA();
 						break;
                 }
@@ -298,7 +262,7 @@ namespace BTL0.Controller
 
             foreach (var gr in rankFromInput)
             {
-                rankOutOfInput.Add(Convert.ToString(gr.Key));
+				rankOutOfInput.Add(Convert.ToString(gr.Key));
             }
 
             var result = listRank.Except(rankOutOfInput).ToList();
@@ -365,7 +329,7 @@ namespace BTL0.Controller
             }
             catch (Exception ex)
             {
-                throw ex;
+				throw ex;
             }
         }
 
