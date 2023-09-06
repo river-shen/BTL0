@@ -13,13 +13,13 @@ namespace BTL0.Controller
 {
     public class ManageStudent
     {
-        /*public static Student[] studentsList;*/
+        public static Student[] studentsList;
 
         public static List<Student> students;
         public ManageStudent()
         {
             students = new List<Student>();
-            // students = new Student[100];
+            studentsList = new Student[100];
         }
 
         public int GenerateID()
