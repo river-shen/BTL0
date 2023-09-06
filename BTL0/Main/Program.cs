@@ -11,7 +11,8 @@ namespace BTL0.Main
             ManageStudent manageStudent = new ManageStudent();
 
             /*string ReadDir = System.IO.Directory.GetCurrentDirectory();
-			string Readpath = ReadDir + "\\StudentData.txt";*/
+            string Readpath = ReadDir + "\\StudentData.txt";
+            Console.WriteLine(ReadDir);*/
 
             var directory = AppContext.BaseDirectory.Split(Path.DirectorySeparatorChar);
             var slice = new ArraySegment<string>(directory, 0, directory.Length - 4);
