@@ -185,7 +185,7 @@ namespace BTL0.Util
 					if (Validation.checkIsNumberInt(input))
 					{
 						inputNumberInt = Convert.ToInt32(input);
-						if (inputNumberInt > StudentConstant.MIN_YEAR && inputNumberInt <= DateTime.Now.Year)
+						if (inputNumberInt >= StudentConstant.MIN_YEAR && inputNumberInt <= DateTime.Now.Year)
 						{
 							checkNull = false;
 						}
