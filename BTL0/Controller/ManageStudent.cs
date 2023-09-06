@@ -13,9 +13,9 @@ namespace BTL0.Controller
 {
     public class ManageStudent
     {
-        public static Student[] studentsList;
+        public static Student[]? studentsList;
 
-        public static List<Student> students;
+        public static List<Student>? students;
         public ManageStudent()
         {
             students = new List<Student>();
@@ -56,12 +56,6 @@ namespace BTL0.Controller
         {
             Student student = new Student();
             student.ID = GenerateID();
-
-            bool checkNull = true;
-            bool checkDateTime = true;
-			double inputNumberDouble;
-			int inputNumberInt;
-
 
 			Console.Write("Enter Student Name: ");
             student.Name = GetInput.GetName();
@@ -163,7 +157,7 @@ namespace BTL0.Controller
 
         public Student FindByID(int id)
         {
-            Student searchResult = null;
+            Student? searchResult = null;
             if (students != null && students.Count > 0)
             {
                 foreach (Student student in students)
@@ -180,8 +174,6 @@ namespace BTL0.Controller
 
         public void UpdateStudent(int id)
         {
-            bool checkNull = true;
-            double inputNumberDouble = 0;
             Student student = FindByID(id);
             if (student != null)
             {
@@ -270,21 +262,22 @@ namespace BTL0.Controller
         }
 
         public bool DeleteStudent(int id)
-        {
-            bool IsDeleted = false;
-            Student student = FindByID(id);
-            if (student != null)
-            {
-                IsDeleted = students.Remove(student);
-                for (int i = id; i < students.Count; i++)
-                {
-                    students[i].ID--;
-                }
-            }
-            return IsDeleted;
-        }
+		{
+			bool IsDeleted = false;
+			Student student = FindByID(id);
+			if (student == null)
+			{
+				return IsDeleted;
+			}
+			IsDeleted = students.Remove(student);
+			for (int i = id; i < students.Count; i++)
+			{
+				students[i].ID--;
+			}
+			return IsDeleted;
+		}
 
-        public void DisplayByRank()
+		public void DisplayByRank()
         {
             int countStudent = CountStudent();
             List<string> listRank = new List<string>() {

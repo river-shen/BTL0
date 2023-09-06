@@ -212,7 +212,7 @@ namespace BTL0.Util
 			bool checkNull = true;
 			while (checkNull)
 			{
-				string input = Console.ReadLine();
+				string? input = Console.ReadLine();
 				if (Validation.checkTextNull(input))
 				{
 					if (Validation.checkIsNumberDouble(input))
