@@ -316,7 +316,7 @@ namespace BTL0.Controller
                 StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
                 foreach (Student item in students)
                 {
-                    string line = item.ID + 1 + "\n" + item.Name + "\n" +
+                    string line = (item.ID + 1) + "\n" + item.Name + "\n" +
                                     item.DateOfBirth.ToString("MM/dd/yyyy") + "\n" +
                                     item.Address + "\n" + item.Height.ToString() + "\n" +
                                     item.Weight.ToString() + "\n" + item.StudentCode + "\n" +

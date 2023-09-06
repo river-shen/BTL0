@@ -236,7 +236,7 @@ namespace BTL0.Util
 					if (Validation.checkIsNumberDouble(input))
 					{
 						inputNumberDouble = Convert.ToDouble(input);
-						if (inputNumberDouble <= StudentConstant.MAX_GPA && inputNumberDouble > StudentConstant.MIN_GPA)
+						if (inputNumberDouble <= StudentConstant.MAX_GPA && inputNumberDouble >= StudentConstant.MIN_GPA)
 						{
 							checkNull = false;
 						}
