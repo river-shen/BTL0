@@ -80,7 +80,7 @@ namespace BTL0.Util
 					if (Validation.checkIsNumberDouble(input))
 					{
 						inputNumberDouble = Convert.ToDouble(input);
-						if (inputNumberDouble < StudentConstant.MAX_HEIGHT && inputNumberDouble > StudentConstant.MIN_HEIGHT)
+						if (inputNumberDouble <= StudentConstant.MAX_HEIGHT && inputNumberDouble >= StudentConstant.MIN_HEIGHT)
 						{
 							checkNull = false;
 						}
@@ -113,7 +113,7 @@ namespace BTL0.Util
 					if (Validation.checkIsNumberDouble(input))
 					{
 						inputNumberDouble = Convert.ToDouble(input);
-						if (inputNumberDouble < StudentConstant.MAX_HEIGHT && inputNumberDouble > StudentConstant.MIN_WEIGHT)
+						if (inputNumberDouble <= StudentConstant.MAX_HEIGHT && inputNumberDouble >= StudentConstant.MIN_WEIGHT)
 						{
 							checkNull = false;
 						}

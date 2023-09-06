@@ -27,39 +27,20 @@ namespace BTL0.Main
 
             while (true)
             {
-                Console.WriteLine("\nMANAGE STUDENT C#");
-                Console.WriteLine("*********************************************");
-
-                // Options in here
-                Console.WriteLine("** 1. Add Student                          **");
-                Console.WriteLine("** 2. Find Student By ID                   **");
-                Console.WriteLine("** 3. Update Student                       **");
-                Console.WriteLine("** 4. Delete Student                       **");
-                Console.WriteLine("** 5. Display by rank                      **");
-                Console.WriteLine("** 6. Display by GPA                       **");
-                Console.WriteLine("** 7. Show Studen by Rank                  **");
-                Console.WriteLine("** 8. Show Students                        **");
-                //
-
-                Console.WriteLine("*********************************************");
-                Console.WriteLine("** 0. Exit                                  **");
-                // Console.Write("\nEnter your option: ");
-                // int key = Convert.ToInt32(Console.ReadLine());
+                DisplayMenu();
 
                 int key = 0;
                 bool checkNull = true;
-                int inputNumberInt;
                 Console.Write("\nEnter your option: ");
                 while (checkNull)
                 {
-                    string input = Console.ReadLine();
+                    string? input = Console.ReadLine();
                     if (Validation.checkTextNull(input))
                     {
                         if (Validation.checkIsNumberInt(input))
                         {
-                            inputNumberInt = Convert.ToInt32(input);
+                            key = Convert.ToInt32(input);
                             checkNull = false;
-                            key = inputNumberInt;
                         }
                         else
                         {
@@ -273,5 +254,20 @@ namespace BTL0.Main
                 }
             }
         }
+        static void DisplayMenu()
+        {
+			Console.WriteLine("\nMANAGE STUDENT C#");
+			Console.WriteLine("*********************************************");
+			Console.WriteLine("** 1. Add Student                          **");
+			Console.WriteLine("** 2. Find Student By ID                   **");
+			Console.WriteLine("** 3. Update Student                       **");
+			Console.WriteLine("** 4. Delete Student                       **");
+			Console.WriteLine("** 5. Display by rank                      **");
+			Console.WriteLine("** 6. Display by GPA                       **");
+			Console.WriteLine("** 7. Show Studen by Rank                  **");
+			Console.WriteLine("** 8. Show Students                        **");
+			Console.WriteLine("*********************************************");
+			Console.WriteLine("** 0. Exit                                  **");
+		}
     }
 }
