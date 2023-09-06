@@ -88,3 +88,13 @@ Hello
 cvbn
 1900
 0.1
+10
+GoodBye
+08/08/1990
+jfosijfd
+180
+70
+asdfghjkl;
+nojoij
+2023
+7.7

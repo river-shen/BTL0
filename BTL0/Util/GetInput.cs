@@ -14,15 +14,15 @@ namespace BTL0.Util
 		public static string GetName()
 		{
 			string? input = null;
-			bool checkNull = true;
+			bool check = true;
 
 			Console.Write("Enter Student Name: ");
-			while (checkNull)
+			while (check)
 			{
 				input = Console.ReadLine();
 				if (Validation.checkTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_NAME)
 				{
-					checkNull = false;
+					check = false;
 					input = Convert.ToString(input);
 				}
 				else
@@ -35,15 +35,15 @@ namespace BTL0.Util
 		public static DateTime GetDateTime()
 		{
 			DateTime inputDateTime = DateTime.Now;
-			bool checkDateTime = true;
+			bool check = true;
 
 			Console.Write("Enter student's birth date (as mm/dd/yyyy): ");
-			while (checkDateTime)
+			while (check)
 			{
 				string input = Console.ReadLine();
 				if (Validation.IsValiDate(input))
 				{
-					checkDateTime = false;
+					check = false;
 					inputDateTime = DateTime.Parse(input);
 				}
 				else
@@ -56,15 +56,15 @@ namespace BTL0.Util
 		public static string GetAdress()
 		{
 			string input = null;
-			bool checkNull = true;
+			bool check = true;
 
 			Console.Write("Enter Address: ");
-			while (checkNull)
+			while (check)
 			{
 				input = Console.ReadLine();
 				if (Validation.checkTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_ADDRESS)
 				{
-					checkNull = false;
+					check = false;
 					input = Convert.ToString(input);
 				}
 				else
@@ -77,10 +77,10 @@ namespace BTL0.Util
 		public static double GetHeight()
 		{
 			double inputNumberDouble = 0;
-			bool checkNull = true;
+			bool check = true;
 
 			Console.Write("Enter Height: ");
-			while (checkNull)
+			while (check)
 			{
 				string input = Console.ReadLine();
 				if (Validation.checkTextNull(input))
@@ -90,7 +90,7 @@ namespace BTL0.Util
 						inputNumberDouble = Convert.ToDouble(input);
 						if (inputNumberDouble <= StudentConstant.MAX_HEIGHT && inputNumberDouble >= StudentConstant.MIN_HEIGHT)
 						{
-							checkNull = false;
+							check = false;
 						}
 						else
 						{
@@ -112,10 +112,10 @@ namespace BTL0.Util
 		public static double GetWeight()
 		{
 			double inputNumberDouble = 0;
-			bool checkNull = true;
+			bool check = true;
 
 			Console.Write("Enter Weight: ");
-			while (checkNull)
+			while (check)
 			{
 				string input = Console.ReadLine();
 				if (Validation.checkTextNull(input))
@@ -125,7 +125,7 @@ namespace BTL0.Util
 						inputNumberDouble = Convert.ToDouble(input);
 						if (inputNumberDouble <= StudentConstant.MAX_HEIGHT && inputNumberDouble >= StudentConstant.MIN_WEIGHT)
 						{
-							checkNull = false;
+							check = false;
 						}
 						else
 						{
@@ -147,15 +147,15 @@ namespace BTL0.Util
 		public static string GetStudentCode()
 		{
 			string input = null;
-			bool checkNull = true;
+			bool check = true;
 
 			Console.Write("Enter Student ID: ");
-			while (checkNull)
+			while (check)
 			{
 				input = Console.ReadLine();
 				if (Validation.checkTextNull(input) && input.Length == StudentConstant.LENGTH_STUDENTCODE)
 				{
-					checkNull = false;
+					check = false;
 					input = Convert.ToString(input);
 				}
 				else
@@ -168,20 +168,20 @@ namespace BTL0.Util
 		public static string GetSchoolName()
 		{
 			string input = null;
-			bool checkNull = true;
+			bool check = true;
 
 			Console.Write("Enter name of School: ");
-			while (checkNull)
+			while (check)
 			{
 				input = Console.ReadLine();
 				if (Validation.checkTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_SCHOOL_NAME)
 				{
-					checkNull = false;
+					check = false;
 					input = Convert.ToString(input);
 				}
 				else
 				{
-					Console.Write($"Must smaller than {StudentConstant.MAX_LENGTH_SCHOOL_NAME} characters! Enter again: ");
+					Console.Write($"Must smaller than {StudentConstant.MAX_LENGTH_SCHOOL_NAME} characters and not null! Enter again: ");
 				}
 			}
 			return input;
@@ -190,10 +190,10 @@ namespace BTL0.Util
 		{
 			string input = null;
 			int inputNumberInt = 0;
-			bool checkNull = true;
+			bool check = true;
 
 			Console.Write("Enter year of addmission: ");
-			while (checkNull)
+			while (check)
 			{
 				input = Console.ReadLine();
 				if (Validation.checkTextNull(input))
@@ -203,7 +203,7 @@ namespace BTL0.Util
 						inputNumberInt = Convert.ToInt32(input);
 						if (inputNumberInt >= StudentConstant.MIN_YEAR && inputNumberInt <= DateTime.Now.Year)
 						{
-							checkNull = false;
+							check = false;
 						}
 						else
 						{
@@ -225,10 +225,10 @@ namespace BTL0.Util
 		public static double GetGPA()
 		{
 			double inputNumberDouble = 0;
-			bool checkNull = true;
+			bool check = true;
 
 			Console.Write("Enter GPA: ");
-			while (checkNull)
+			while (check)
 			{
 				string? input = Console.ReadLine();
 				if (Validation.checkTextNull(input))
@@ -238,7 +238,7 @@ namespace BTL0.Util
 						inputNumberDouble = Convert.ToDouble(input);
 						if (inputNumberDouble <= StudentConstant.MAX_GPA && inputNumberDouble >= StudentConstant.MIN_GPA)
 						{
-							checkNull = false;
+							check = false;
 						}
 						else
 						{
