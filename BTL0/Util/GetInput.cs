@@ -144,7 +144,7 @@ namespace BTL0.Util
 			}
 			return inputNumberDouble;
 		}
-		public static string GetStudentID()
+		public static string GetStudentCode()
 		{
 			string input = null;
 			bool checkNull = true;

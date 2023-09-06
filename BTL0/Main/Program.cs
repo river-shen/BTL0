@@ -24,8 +24,7 @@ namespace BTL0.Main
             Console.WriteLine("Read data successfully");
             Console.WriteLine("------------------------------------------------");
 
-
-            while (true)
+			while (true)
             {
                 DisplayMenu();
 
