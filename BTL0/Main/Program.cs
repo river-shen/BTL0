@@ -16,8 +16,8 @@ namespace BTL0.Main
 
             var directory = AppContext.BaseDirectory.Split(Path.DirectorySeparatorChar);
             var slice = new ArraySegment<string>(directory, 0, directory.Length - 4);
-            var path = Path.Combine(slice.ToArray()) + "\\StudentData.txt";
-            Console.WriteLine($"Path of Program.cs is: {path}");
+			var path = Path.Combine(slice.ToArray()) + "\\StudentData.txt";
+			Console.WriteLine($"Path of Program.cs is: {path}");
             manageStudent.ReadFromFile(path);
 
             manageStudent.ShowStudents(manageStudent.getStudents());
