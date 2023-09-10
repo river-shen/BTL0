@@ -79,7 +79,7 @@ namespace BTL0.Main
                         {
                             Console.WriteLine("\n2. Find Student by ID");
                             Console.Write("Enter ID: ");
-                            int id = Convert.ToInt32(Console.ReadLine());
+                            int id = GetInput.GetInt();
                             if (id - 1 < manageStudent.CountStudent() && id - 1 >= 0)
                             {
                                 manageStudent.ShowStudent(manageStudent.getStudents()[id - 1]);
@@ -102,8 +102,8 @@ namespace BTL0.Main
                         {
                             Console.WriteLine("\n3. Update Student by ID");
                             Console.Write("Enter ID: ");
-                            int id = Convert.ToInt32(Console.ReadLine());
-                            if (id - 1 < manageStudent.CountStudent() && id - 1 >= 0)
+							int id = GetInput.GetInt();
+							if (id - 1 < manageStudent.CountStudent() && id - 1 >= 0)
                             {
                                 manageStudent.UpdateStudent(id - 1);
                                 manageStudent.ShowStudent(manageStudent.getStudents()[id - 1]);
@@ -125,9 +125,9 @@ namespace BTL0.Main
                         if (manageStudent.CountStudent() > 0)
                         {
                             Console.WriteLine("\n3. Delete Student by ID");
-                            Console.Write("Enter ID: ");
-                            int id = Convert.ToInt32(Console.ReadLine());
-                            if (id - 1 < manageStudent.CountStudent() && id - 1 >= 0)
+                            Console.Write("Enter ID: "); 
+                            int id = GetInput.GetInt();
+							if (id - 1 < manageStudent.CountStudent() && id - 1 >= 0)
                             {
                                 if (manageStudent.DeleteStudent(id - 1))
                                 {
@@ -182,29 +182,8 @@ namespace BTL0.Main
                             Console.WriteLine("6. POOR");
                             Console.WriteLine("---------------------------");
 
-                            int optionInput = 0;
 							Console.Write("\nEnter your option: ");
-							while (checkNull)
-							{
-								string input = Console.ReadLine();
-								if (Validation.checkTextNull(input))
-								{
-									if (Validation.checkIsNumberInt(input))
-									{
-										optionInput = Convert.ToInt32(input);
-										checkNull = false;
-									}
-									else
-									{
-										Console.Write("Not a number! Enter again: ");
-									}
-								}
-								else
-								{
-									Console.Write("Invalid Input! Enter again: ");
-								}
-							}
-
+                            int optionInput = GetInput.GetInt();
 							switch (optionInput)
                             {
                                 case 1:

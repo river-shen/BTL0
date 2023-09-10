@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BTL0.Controller;
+using System.Threading.Channels;
 
 namespace BTL0.Util
 {
@@ -82,29 +83,14 @@ namespace BTL0.Util
 			Console.Write("Enter Height: ");
 			while (check)
 			{
-				string input = Console.ReadLine();
-				if (Validation.checkTextNull(input))
+				inputNumberDouble = GetDouble();
+				if (inputNumberDouble <= StudentConstant.MAX_HEIGHT && inputNumberDouble >= StudentConstant.MIN_HEIGHT)
 				{
-					if (Validation.checkIsNumberDouble(input))
-					{
-						inputNumberDouble = Convert.ToDouble(input);
-						if (inputNumberDouble <= StudentConstant.MAX_HEIGHT && inputNumberDouble >= StudentConstant.MIN_HEIGHT)
-						{
-							check = false;
-						}
-						else
-						{
-							Console.Write($"Must from {StudentConstant.MIN_HEIGHT}cm to {StudentConstant.MAX_HEIGHT}cm! Enter again: ");
-						}
-					}
-					else
-					{
-						Console.Write("Not a number! Enter again: ");
-					}
+					check = false;
 				}
 				else
 				{
-					Console.Write("Invalid Input! Enter again: ");
+					Console.Write($"Must from {StudentConstant.MIN_HEIGHT}cm to {StudentConstant.MAX_HEIGHT}cm! Enter again: ");
 				}
 			}
 			return inputNumberDouble;
@@ -117,29 +103,14 @@ namespace BTL0.Util
 			Console.Write("Enter Weight: ");
 			while (check)
 			{
-				string input = Console.ReadLine();
-				if (Validation.checkTextNull(input))
+				inputNumberDouble = GetDouble();
+				if (inputNumberDouble <= StudentConstant.MAX_HEIGHT && inputNumberDouble >= StudentConstant.MIN_WEIGHT)
 				{
-					if (Validation.checkIsNumberDouble(input))
-					{
-						inputNumberDouble = Convert.ToDouble(input);
-						if (inputNumberDouble <= StudentConstant.MAX_HEIGHT && inputNumberDouble >= StudentConstant.MIN_WEIGHT)
-						{
-							check = false;
-						}
-						else
-						{
-							Console.Write($"Must from {StudentConstant.MIN_WEIGHT}kg to {StudentConstant.MAX_HEIGHT}kg! Enter again: ");
-						}
-					}
-					else
-					{
-						Console.Write("Not a number! Enter again: ");
-					}
+					check = false;
 				}
 				else
 				{
-					Console.Write("Invalid Input! Enter again: ");
+					Console.Write($"Must from {StudentConstant.MIN_WEIGHT}kg to {StudentConstant.MAX_HEIGHT}kg! Enter again: ");
 				}
 			}
 			return inputNumberDouble;
@@ -188,36 +159,20 @@ namespace BTL0.Util
 		}
 		public static int GetYearOfAdmission()
 		{
-			string input = null;
 			int inputNumberInt = 0;
 			bool check = true;
 
 			Console.Write("Enter year of addmission: ");
 			while (check)
 			{
-				input = Console.ReadLine();
-				if (Validation.checkTextNull(input))
+				inputNumberInt = GetInt();
+				if (inputNumberInt >= StudentConstant.MIN_YEAR && inputNumberInt <= DateTime.Now.Year)
 				{
-					if (Validation.checkIsNumberInt(input))
-					{
-						inputNumberInt = Convert.ToInt32(input);
-						if (inputNumberInt >= StudentConstant.MIN_YEAR && inputNumberInt <= DateTime.Now.Year)
-						{
-							check = false;
-						}
-						else
-						{
-							Console.Write($"Must from {StudentConstant.MIN_YEAR} to {DateTime.Now.Year}! Enter again: ");
-						}
-					}
-					else
-					{
-						Console.Write("Not a number! Enter again: ");
-					}
+					check = false;
 				}
 				else
 				{
-					Console.Write("Invalid Input! Enter again: ");
+					Console.Write($"Must from {StudentConstant.MIN_YEAR} to {DateTime.Now.Year}! Enter again: ");
 				}
 			}
 			return inputNumberInt;
@@ -230,20 +185,54 @@ namespace BTL0.Util
 			Console.Write("Enter GPA: ");
 			while (check)
 			{
+				inputNumberDouble = GetDouble();
+				if (inputNumberDouble <= StudentConstant.MAX_GPA && inputNumberDouble >= StudentConstant.MIN_GPA)
+				{
+					check = false;
+				}
+				else
+				{
+					Console.Write($"Must from {StudentConstant.MIN_GPA} to {StudentConstant.MAX_GPA}! Enter again: ");
+				}
+			}
+			return inputNumberDouble;
+		}
+		public static int GetInt()
+		{
+			string? input = null;
+			int inputNumberInt = 0;
+			while(true)
+			{
+				input = Console.ReadLine();
+				if (Validation.checkTextNull(input))
+				{
+					if (Validation.checkIsNumberInt(input))
+					{
+						inputNumberInt = Convert.ToInt32(input);
+						break;
+					} else
+					{
+                        Console.Write("Enter a number: ");
+                    }
+				} else
+				{
+                    Console.Write("Enter again: ");
+                }
+			}
+			return inputNumberInt;
+		}
+		public static double GetDouble()
+		{
+			double inputNumberDouble = 0;
+			while(true)
+			{
 				string? input = Console.ReadLine();
 				if (Validation.checkTextNull(input))
 				{
 					if (Validation.checkIsNumberDouble(input))
 					{
 						inputNumberDouble = Convert.ToDouble(input);
-						if (inputNumberDouble <= StudentConstant.MAX_GPA && inputNumberDouble >= StudentConstant.MIN_GPA)
-						{
-							check = false;
-						}
-						else
-						{
-							Console.Write($"Must from {StudentConstant.MIN_GPA} to {StudentConstant.MAX_GPA}! Enter again: ");
-						}
+						break;
 					}
 					else
 					{
