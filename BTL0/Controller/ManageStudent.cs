@@ -221,6 +221,8 @@ namespace BTL0.Controller
                     case 9:
 						student.GPA = GetInput.GetGPA();
 						break;
+                    default:
+                        break;
                 }
             }
             else
