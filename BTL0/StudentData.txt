@@ -1,14 +1,4 @@
 ﻿1
-Pham than Binh
-02/28/2003
-Tu Son
-180
-70
-2345678901
-HUST
-2021
-3.2
-2
 Tran Minh Chien
 02/28/2003
 Tu Son
@@ -18,7 +8,7 @@ Tu Son
 HUST
 2021
 1.2
-3
+2
 Nguyen Tien Lam
 05/31/2003
 Tu Son
@@ -28,7 +18,7 @@ Tu Son
 HUST
 2021
 9.9
-4
+3
 Binh Ngu
 02/09/2003
 Tu Son
@@ -38,7 +28,7 @@ Tu Son
 HUST
 2021
 5.5
-5
+4
 ...
 01/01/2000
 ...
@@ -48,7 +38,7 @@ HUST
 ...
 1901
 0.1
-6
+5
 ....
 01/01/2002
 ....
@@ -58,7 +48,7 @@ HUST
 ....
 2023
 4.9
-7
+6
 ......
 05/30/2004
 ......
@@ -68,7 +58,7 @@ quertyuiop
 hfosij
 1999
 10
-8
+7
 Hello
 04/04/2004
 Hello
@@ -78,7 +68,7 @@ Hello
 cvbn
 1900
 0.1
-9
+8
 GoodBye
 08/08/1990
 jfosijfd
@@ -88,7 +78,7 @@ asdfghjkl;
 nojoij
 2023
 7.7
-10
+9
 jfodijfsodijfsd
 04/04/2004
 jfsodijfosdiajfew
@@ -98,7 +88,7 @@ zxcvbnm,./
 jfosdi
 2022
 7.8
-11
+10
 fjodsijfosd
 04/04/2001
 jfosdijfoie
@@ -108,3 +98,23 @@ jfosdijfoie
 foidsjfewn
 2023
 2.3
+11
+jfioewjweorw
+05/31/2003
+jfosidjfwe
+180
+70
+/.,mnbvcxz
+oiwejorw
+2019
+10
+12
+fjosijwernwelkn
+05/31/2003
+jofisjwe
+180
+70
+qazwsxedcr
+jfoijew
+2018
+0.1

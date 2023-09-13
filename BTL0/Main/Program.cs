@@ -10,14 +10,11 @@ namespace BTL0.Main
         {
             ManageStudent manageStudent = new ManageStudent();
 
-            /*string ReadDir = System.IO.Directory.GetCurrentDirectory();
-            string Readpath = ReadDir + "\\StudentData.txt";
-            Console.WriteLine(ReadDir);*/
-
+            // path current
             var directory = AppContext.BaseDirectory.Split(Path.DirectorySeparatorChar);
             var slice = new ArraySegment<string>(directory, 0, directory.Length - 4);
 			var path = Path.Combine(slice.ToArray()) + "\\StudentData.txt";
-			Console.WriteLine($"Path of Program.cs is: {path}");
+
             manageStudent.ReadFromFile(path);
 
             manageStudent.ShowStudents(manageStudent.getStudents());
@@ -27,32 +24,7 @@ namespace BTL0.Main
 			while (true)
             {
                 DisplayMenu();
-
-                int key = 0;
-                bool checkNull = true;
-                Console.Write("\nEnter your option: ");
-                while (checkNull)
-                {
-                    string? input = Console.ReadLine();
-                    if (Validation.checkTextNull(input))
-                    {
-                        if (Validation.checkIsNumberInt(input))
-                        {
-                            key = Convert.ToInt32(input);
-                            checkNull = false;
-                        }
-                        else
-                        {
-                            Console.Write("Not a number! Enter again: ");
-                        }
-                    }
-                    else
-                    {
-                        Console.Write("Invalid Input! Enter again: ");
-                    }
-                }
-                checkNull = true;
-
+                int key = GetInput.GetOption();
                 switch (key)
                 {
                     case 0:
@@ -94,7 +66,6 @@ namespace BTL0.Main
                         {
                             Console.WriteLine("Khong co du lieu phu hop");
                         }
-
                         break;
 
                     case 3:

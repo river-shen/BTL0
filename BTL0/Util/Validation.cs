@@ -1,12 +1,4 @@
-﻿using BTL0.Constant;
-using BTL0.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BTL0.Util
+﻿namespace BTL0.Util
 {
 	public class Validation
 	{
@@ -15,26 +7,19 @@ namespace BTL0.Util
 			DateTime tempObject;
 			return DateTime.TryParse(date, out tempObject);
 		}
-		public static bool checkIsNumberDouble(string input)
+		public static bool IsNumberDouble(string input)
 		{
 			double numericValue;
 			return double.TryParse(input, out numericValue);
 		}
-		public static bool checkIsNumberInt(string input)
+		public static bool IsNumberInt(string input)
 		{
 			int numericValue;
 			return int.TryParse(input, out numericValue);
 		}
-		public static bool checkTextNull(string input)
+		public static bool isTextNull(string input)
 		{
-			if (input.Length == 0)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
+			return input.Length != 0;
 		}
 		
 	}

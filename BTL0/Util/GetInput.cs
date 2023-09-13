@@ -1,12 +1,4 @@
 ﻿using BTL0.Constant;
-using BTL0.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BTL0.Controller;
-using System.Threading.Channels;
 
 namespace BTL0.Util
 {
@@ -21,7 +13,7 @@ namespace BTL0.Util
 			while (check)
 			{
 				input = Console.ReadLine();
-				if (Validation.checkTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_NAME)
+				if (Validation.isTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_NAME)
 				{
 					check = false;
 					input = Convert.ToString(input);
@@ -63,7 +55,7 @@ namespace BTL0.Util
 			while (check)
 			{
 				input = Console.ReadLine();
-				if (Validation.checkTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_ADDRESS)
+				if (Validation.isTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_ADDRESS)
 				{
 					check = false;
 					input = Convert.ToString(input);
@@ -124,7 +116,7 @@ namespace BTL0.Util
 			while (check)
 			{
 				input = Console.ReadLine();
-				if (Validation.checkTextNull(input) && input.Length == StudentConstant.LENGTH_STUDENTCODE)
+				if (Validation.isTextNull(input) && input.Length == StudentConstant.LENGTH_STUDENTCODE)
 				{
 					check = false;
 					input = Convert.ToString(input);
@@ -145,7 +137,7 @@ namespace BTL0.Util
 			while (check)
 			{
 				input = Console.ReadLine();
-				if (Validation.checkTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_SCHOOL_NAME)
+				if (Validation.isTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_SCHOOL_NAME)
 				{
 					check = false;
 					input = Convert.ToString(input);
@@ -201,25 +193,31 @@ namespace BTL0.Util
 		{
 			string? input = null;
 			int inputNumberInt = 0;
-			while(true)
+			while (true)
 			{
 				input = Console.ReadLine();
-				if (Validation.checkTextNull(input))
+				if (Validation.isTextNull(input))
 				{
-					if (Validation.checkIsNumberInt(input))
+					if (Validation.IsNumberInt(input))
 					{
 						inputNumberInt = Convert.ToInt32(input);
 						break;
 					} else
 					{
-                        Console.Write("Enter a number: ");
-                    }
+						Console.Write("Enter a number: ");
+					}
 				} else
 				{
-                    Console.Write("Enter again: ");
-                }
+					Console.Write("Enter again: ");
+				}
 			}
 			return inputNumberInt;
+		}
+		public static int GetOption()
+		{
+            Console.Write("Enter Option: ");
+			int key = GetInt();
+			return key;
 		}
 		public static double GetDouble()
 		{
@@ -227,9 +225,9 @@ namespace BTL0.Util
 			while(true)
 			{
 				string? input = Console.ReadLine();
-				if (Validation.checkTextNull(input))
+				if (Validation.isTextNull(input))
 				{
-					if (Validation.checkIsNumberDouble(input))
+					if (Validation.IsNumberDouble(input))
 					{
 						inputNumberDouble = Convert.ToDouble(input);
 						break;
@@ -246,5 +244,6 @@ namespace BTL0.Util
 			}
 			return inputNumberDouble;
 		}
+		
 	}
 }
