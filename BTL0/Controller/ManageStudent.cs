@@ -307,9 +307,8 @@ namespace BTL0.Controller
 
         public void SaveFile(List<Student> students, string path)
         {
-            try
+            using (StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8))
             {
-                StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
                 foreach (Student item in students)
                 {
                     string line = (item.Id + 1) + "\n" + item.Name + "\n" +
@@ -320,20 +319,15 @@ namespace BTL0.Controller
                                     + "\n" + item.GPA;
                     sw.WriteLine(line);
                 }
-                sw.Close();
                 Console.WriteLine("Write Successfully");
                 Console.WriteLine("--------------------------------");
-            } catch 
-            {
-                Console.WriteLine("Error");
             }
         }
 
         public void ReadFromFile(string path)
         {
-            try
+            using (StreamReader sr = new StreamReader(path, Encoding.UTF8))
             {
-                StreamReader sr = new StreamReader(path, Encoding.UTF8);
                 string line = sr.ReadLine();
                 while (line != null)
                 {
@@ -353,11 +347,6 @@ namespace BTL0.Controller
                     students.Add(student);
                     line = sr.ReadLine();
                 }
-                sr.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error");
             }
         }
     }
