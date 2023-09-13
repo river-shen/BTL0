@@ -1,4 +1,5 @@
 ﻿using BTL0.Constant;
+using BTL0.Controller;
 
 namespace BTL0.Util
 {
@@ -13,7 +14,7 @@ namespace BTL0.Util
 			while (check)
 			{
 				input = Console.ReadLine();
-				if (Validation.isTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_NAME)
+				if (Validation.IsTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_NAME)
 				{
 					check = false;
 					input = Convert.ToString(input);
@@ -55,7 +56,7 @@ namespace BTL0.Util
 			while (check)
 			{
 				input = Console.ReadLine();
-				if (Validation.isTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_ADDRESS)
+				if (Validation.IsTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_ADDRESS)
 				{
 					check = false;
 					input = Convert.ToString(input);
@@ -116,7 +117,7 @@ namespace BTL0.Util
 			while (check)
 			{
 				input = Console.ReadLine();
-				if (Validation.isTextNull(input) && input.Length == StudentConstant.LENGTH_STUDENTCODE)
+				if (Validation.IsTextNull(input) && input.Length == StudentConstant.LENGTH_STUDENTCODE)
 				{
 					check = false;
 					input = Convert.ToString(input);
@@ -137,7 +138,7 @@ namespace BTL0.Util
 			while (check)
 			{
 				input = Console.ReadLine();
-				if (Validation.isTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_SCHOOL_NAME)
+				if (Validation.IsTextNull(input) && input.Length < StudentConstant.MAX_LENGTH_SCHOOL_NAME)
 				{
 					check = false;
 					input = Convert.ToString(input);
@@ -196,7 +197,7 @@ namespace BTL0.Util
 			while (true)
 			{
 				input = Console.ReadLine();
-				if (Validation.isTextNull(input))
+				if (Validation.IsTextNull(input))
 				{
 					if (Validation.IsNumberInt(input))
 					{
@@ -225,7 +226,7 @@ namespace BTL0.Util
 			while(true)
 			{
 				string? input = Console.ReadLine();
-				if (Validation.isTextNull(input))
+				if (Validation.IsTextNull(input))
 				{
 					if (Validation.IsNumberDouble(input))
 					{
@@ -244,6 +245,11 @@ namespace BTL0.Util
 			}
 			return inputNumberDouble;
 		}
-		
+		public static int GetID()
+		{
+            Console.WriteLine("----------------------------------------");
+            Console.Write("Enter ID: ");
+			return (GetInt()-1);
+        }
 	}
 }
