@@ -61,6 +61,7 @@ namespace BTL0.Controller
             Console.WriteLine("Add Student: ");
             ShowStudent(student);
             students.Add(student);
+            Console.WriteLine("\nAdd successfully");
         }
 
         public bool ExistByStudentCode(string studentCode)
@@ -82,8 +83,8 @@ namespace BTL0.Controller
             Console.WriteLine($"Name of School: {student.SchoolName}");
             Console.WriteLine($"Year of Admission: {student.YearOfAdmission}");
             Console.WriteLine($"GPA: {student.GPA}");
-            student.rank = student.setRank(student.GPA);
-            Console.WriteLine($"Rank: {student.rank}");
+            student.Rank = student.setRank(student.GPA);
+            Console.WriteLine($"Rank: {student.Rank}");
             Console.WriteLine("----------------------------------");
         }
 
@@ -171,22 +172,25 @@ namespace BTL0.Controller
             {
                 Console.WriteLine($"Invalid ID");
             }
+            ShowStudent(students[id]);
         }
 
-        public bool DeleteStudent(int id)
+        public void DeleteStudent(int id)
         {
             bool isDelete = false;
             Student student = FindByID(id);
             if (student == null)
             {
-                return isDelete;
             }
             isDelete = students.Remove(student);
             for (int i = id; i < students.Count; i++)
             {
                 students[i].Id--;
             }
-            return isDelete;
+            if (isDelete)
+            {
+                Console.WriteLine("Delete Succesfully");
+            }
         }
 
         public void DisplayByRank()
@@ -203,7 +207,7 @@ namespace BTL0.Controller
             List<string> rankKey = new List<string>();
 
             var rankFromInput = from student in students              // group student
-                                group student by student.rank into gr // by rank
+                                group student by student.Rank into gr // by rank
                                 orderby gr.Key descending             // in students
                                 select gr;
 
@@ -243,10 +247,50 @@ namespace BTL0.Controller
             }
         }
 
-        public void ShowStudenByRank(Rank rank)
+        public int InputRankOption()
         {
+            Console.WriteLine("---------------------------");
+            Console.WriteLine("1. EXCELLENT");
+            Console.WriteLine("2. VERY_GOOD");
+            Console.WriteLine("3. GOOD");
+            Console.WriteLine("4. AVERAGE");
+            Console.WriteLine("5. WEAK");
+            Console.WriteLine("6. POOR");
+            Console.WriteLine("---------------------------");
+
+            Console.Write("\nEnter your option: ");
+            return GetInput.GetInt();
+        }
+
+        public void ShowStudenByRank()
+        {
+            Rank rank = new Rank();
+            switch (InputRankOption())
+            {
+                case 1:
+                    rank = Rank.EXCELLENT;
+                    break;
+                case 2:
+                    rank = Rank.VERY_GOOD;
+                    break;
+                case 3:
+                    rank = Rank.GOOD;
+                    break;
+                case 4:
+                    rank = Rank.AVERAGE;
+                    break;
+                case 5:
+                    rank = Rank.WEAK;
+                    break;
+                case 6:
+                    rank = Rank.POOR;
+                    break;
+                default:
+                    Console.WriteLine("MUST FROM 1 to 6!");
+                    break;
+            }
             var result = from student in students   // find students by rank
-                         where student.rank == rank
+                         where student.Rank == rank
                          select student;
             if (result != null && result.Count() > 0)
             {
@@ -261,7 +305,7 @@ namespace BTL0.Controller
             }
         }
 
-        public bool SaveFile(List<Student> students, string path)
+        public void SaveFile(List<Student> students, string path)
         {
             try
             {
@@ -277,11 +321,11 @@ namespace BTL0.Controller
                     sw.WriteLine(line);
                 }
                 sw.Close();
-                return true;
-            }
-            catch (Exception ex)
+                Console.WriteLine("Write Successfully");
+                Console.WriteLine("--------------------------------");
+            } catch 
             {
-                throw ex;
+                Console.WriteLine("Error");
             }
         }
 
@@ -293,24 +337,28 @@ namespace BTL0.Controller
                 string line = sr.ReadLine();
                 while (line != null)
                 {
-                    Student student = new Student();
-                    student.Id = int.Parse(line) - 1;
-                    student.Name = sr.ReadLine().ToString();
-                    student.DateOfBirth = DateTime.Parse(sr.ReadLine());
-                    student.Address = sr.ReadLine().ToString();
-                    student.Height = double.Parse(sr.ReadLine());
-                    student.Weight = double.Parse(sr.ReadLine());
-                    student.StudentCode = sr.ReadLine().ToString();
-                    student.SchoolName = sr.ReadLine().ToString();
-                    student.YearOfAdmission = int.Parse(sr.ReadLine());
-                    student.GPA = double.Parse(sr.ReadLine());
+                    Student student = new Student
+                    {
+                        Id = int.Parse(line) - 1,
+                        Name = sr.ReadLine().ToString(),
+                        DateOfBirth = DateTime.Parse(sr.ReadLine()),
+                        Address = sr.ReadLine().ToString(),
+                        Height = double.Parse(sr.ReadLine()),
+                        Weight = double.Parse(sr.ReadLine()),
+                        StudentCode = sr.ReadLine().ToString(),
+                        SchoolName = sr.ReadLine().ToString(),
+                        YearOfAdmission = int.Parse(sr.ReadLine()),
+                        GPA = double.Parse(sr.ReadLine())
+                    };
                     students.Add(student);
                     line = sr.ReadLine();
                 }
                 sr.Close();
             }
             catch (Exception ex)
-            { throw ex; }
+            {
+                Console.WriteLine("Error");
+            }
         }
     }
 }
