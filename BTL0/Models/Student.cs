@@ -2,7 +2,6 @@
 {
     public class Student : Person
     {
-        public static int _stId = 0;
         public string StudentCode { get; set; }
         public string SchoolName { get; set; }
         public int YearOfAdmission { get; set; }
@@ -24,12 +23,12 @@
 
         public Rank setRank(double gpa)
         {
-            if (gpa < 3) return Rank.POOR;
-            if (gpa >= 3 && gpa < 5) return Rank.WEAK;
-            if (gpa >= 5 && gpa < 6.5) return Rank.AVERAGE;
-            if (gpa >= 6.5 && gpa < 7.5) return Rank.GOOD;
-            if (gpa >= 7.5 && gpa < 9) return Rank.VERY_GOOD;
-            return Rank.EXCELLENT;
+            if (gpa >= 9) return Rank.EXCELLENT;
+            if (gpa >= 7.5) return Rank.VERY_GOOD;
+            if (gpa >= 6.5) return Rank.GOOD;
+            if (gpa >= 5) return Rank.AVERAGE;
+            if (gpa >= 3) return Rank.WEAK;
+            return Rank.POOR;
         }
     }
 }

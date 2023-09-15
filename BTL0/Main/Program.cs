@@ -81,17 +81,18 @@ namespace BTL0.Main
         static void DisplayMenu()
         {
             Console.WriteLine("\nMANAGE STUDENT C#");
-            Console.WriteLine("*********************************************");
-            Console.WriteLine("** 1. Add Student                          **");
-            Console.WriteLine("** 2. Find Student By ID                   **");
-            Console.WriteLine("** 3. Update Student                       **");
-            Console.WriteLine("** 4. Delete Student                       **");
-            Console.WriteLine("** 5. Display by rank                      **");
-            Console.WriteLine("** 6. Display by GPA                       **");
-            Console.WriteLine("** 7. Show Studen by Rank                  **");
-            Console.WriteLine("** 8. Show Students                        **");
-            Console.WriteLine("*********************************************");
-            Console.WriteLine("** 0. Exit                                 **");
+            Console.WriteLine("+-----------------MENU----------------------+");
+            Console.WriteLine("| 1. Add Student                            |");
+            Console.WriteLine("| 2. Find Student By ID                     |");
+            Console.WriteLine("| 3. Update Student                         |");
+            Console.WriteLine("| 4. Delete Student                         |");
+            Console.WriteLine("| 5. Display by rank                        |");
+            Console.WriteLine("| 6. Display by GPA                         |");
+            Console.WriteLine("| 7. Show Studen by Rank                    |");
+            Console.WriteLine("| 8. Show Students                          |");
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("| 0. Exit                                   |");
+            Console.WriteLine("+-------------------------------------------+");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 using BTL0.Models;
 using BTL0.Util;
 
@@ -28,11 +29,11 @@ namespace BTL0.Controller
             return students?.Count ?? 0;
         }
 
-        public String CheckStudentCode()
+        public String GetStudentCode()
         {
             while (true)
             {
-                string studentCode = GetInput.GetStudentCode();
+                string studentCode = GetInput.InputStudentCode();
                 if (ExistByStudentCode(studentCode))
                 {
                     Console.Write("Input is existed! Enter again: ");
@@ -52,7 +53,7 @@ namespace BTL0.Controller
                 Address = GetInput.GetAdress(),
                 Height = GetInput.GetHeight(),
                 Weight = GetInput.GetWeight(),
-                StudentCode = CheckStudentCode(),
+                StudentCode = GetStudentCode(),
                 SchoolName = GetInput.GetSchoolName(),
                 YearOfAdmission = GetInput.GetYearOfAdmission(),
                 GPA = GetInput.GetGPA()
@@ -70,22 +71,29 @@ namespace BTL0.Controller
                 .Contains(studentCode.ToUpper());
         }
 
-        public void ShowStudent(Student student)
+        public void ShowStudent(Student? student)
         {
-            Console.WriteLine("-----------------------------------");
-            Console.WriteLine("ID: " + (student.Id + 1));
-            Console.WriteLine($"Name: {student.Name}");
-            Console.WriteLine($"Date Of Birth: {student.DateOfBirth}");
-            Console.WriteLine($"Address: {student.Address}");
-            Console.WriteLine($"Height: {student.Height}");
-            Console.WriteLine($"Weight: {student.Weight}");
-            Console.WriteLine($"StudentCode: {student.StudentCode}");
-            Console.WriteLine($"Name of School: {student.SchoolName}");
-            Console.WriteLine($"Year of Admission: {student.YearOfAdmission}");
-            Console.WriteLine($"GPA: {student.GPA}");
-            student.Rank = student.setRank(student.GPA);
-            Console.WriteLine($"Rank: {student.Rank}");
-            Console.WriteLine("----------------------------------");
+            if (student != null)
+            {
+                Console.WriteLine("-----------------------------------");
+                Console.WriteLine("ID: " + (student.Id + 1));
+                Console.WriteLine($"Name: {student.Name}");
+                Console.WriteLine($"Date Of Birth: {student.DateOfBirth}");
+                Console.WriteLine($"Address: {student.Address}");
+                Console.WriteLine($"Height: {student.Height}");
+                Console.WriteLine($"Weight: {student.Weight}");
+                Console.WriteLine($"StudentCode: {student.StudentCode}");
+                Console.WriteLine($"Name of School: {student.SchoolName}");
+                Console.WriteLine($"Year of Admission: {student.YearOfAdmission}");
+                Console.WriteLine($"GPA: {student.GPA}");
+                student.Rank = student.setRank(student.GPA);
+                Console.WriteLine($"Rank: {student.Rank}");
+                Console.WriteLine("----------------------------------");
+            }
+            else
+            {
+                Console.WriteLine("INVALID");
+            }
         }
 
         public void ShowStudents(List<Student> students)
@@ -103,12 +111,17 @@ namespace BTL0.Controller
 
         public Student? FindByID(int id)
         {
-            return students.FirstOrDefault(x => x.Id == id);
+            if (id >= 0 || id < students.Count)
+            {
+                return students.FirstOrDefault(x => x.Id == id);
+            }
+            return null;
+
         }
 
         public void UpdateStudent(int id)
         {
-            Student student = FindByID(id);
+            Student? student = FindByID(id);
             if (student != null)
             {
                 Console.WriteLine("");
@@ -150,7 +163,7 @@ namespace BTL0.Controller
                         break;
 
                     case 6:
-                        student.StudentCode = CheckStudentCode();
+                        student.StudentCode = GetStudentCode();
                         break;
 
                     case 7:
@@ -167,70 +180,49 @@ namespace BTL0.Controller
                     default:
                         break;
                 }
+                ShowStudent(students[id]);
             }
             else
             {
                 Console.WriteLine($"Invalid ID");
             }
-            ShowStudent(students[id]);
         }
 
         public void DeleteStudent(int id)
         {
             bool isDelete = false;
-            Student student = FindByID(id);
-            if (student == null)
+            Student? student = FindByID(id);
+            if (student == null) 
             {
+                Console.WriteLine("INVALID");
             }
-            isDelete = students.Remove(student);
-            for (int i = id; i < students.Count; i++)
+            else
             {
-                students[i].Id--;
-            }
-            if (isDelete)
-            {
-                Console.WriteLine("Delete Succesfully");
+                isDelete = students.Remove(student);
+                for (int i = id; i < students.Count; i++)
+                {
+                    students[i].Id--;
+                }
+
+                if (isDelete)
+                {
+                    Console.WriteLine("Delete Succesfully");
+                }
             }
         }
 
         public void DisplayByRank()
         {
-            int countStudent = students.Count();
-            List<string> listRank = new List<string>() {
-                "POOR",
-                "WEAK",
-                "AVERAGE",
-                "GOOD",
-                "VERY_GOOD",
-                "EXCELLENT"
-            };
-            List<string> rankKey = new List<string>();
-
             var rankFromInput = from student in students              // group student
                                 group student by student.Rank into gr // by rank
                                 orderby gr.Key descending             // in students
                                 select gr;
-
-            rankFromInput = rankFromInput.OrderByDescending(s => s.Count()); // sort rank descending
-                                                                             // by number of elements
-                                                                             // in rank
-
+            rankFromInput = rankFromInput.OrderByDescending(s => s.Count());
             foreach (var gr in rankFromInput)
             {
-                rankKey.Add(Convert.ToString(gr.Key));
+                Console.WriteLine("{0,-10}   {1,5}%", gr.Key, 100 * gr.Count() / students.Count());
             }
-            var result = listRank.Except(rankKey).ToList();
-
-            // Print rank that order by descending
-            foreach (var gr in rankFromInput)
-            {
-                Console.WriteLine("{0,-10}   {1,5}%", gr.Key, 100 * gr.Count() / countStudent);
-            }
-            foreach (var i in result)
-            {
-                Console.WriteLine("{0,-10}       0%", i);
-            }
-
+            
         }
 
         public void DisplayByGPA()
@@ -328,7 +320,7 @@ namespace BTL0.Controller
         {
             using (StreamReader sr = new StreamReader(path, Encoding.UTF8))
             {
-                string line = sr.ReadLine();
+                string? line = sr.ReadLine();
                 while (line != null)
                 {
                     Student student = new Student
