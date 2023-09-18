@@ -1,6 +1,6 @@
 ﻿namespace BTL0.Constant
 {
-    public abstract class StudentConstant
+    public abstract class Constant
     {
         public const int MaxLengthName = 100;
         public const int MaxLengthAddress = 300;

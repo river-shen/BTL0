@@ -16,67 +16,69 @@ namespace BTL0.Main
             var path = Path.Combine(slice.ToArray()) + "\\StudentData.txt";
 
             manageStudent.ReadFromFile(path);
-
             manageStudent.ShowStudents(manageStudent.getStudents());
-            Console.WriteLine("Read data successfully");
-            Console.WriteLine("------------------------------------------------");
+            // Person.IndexId = manageStudent.getStudents().FindLast()
+            // Person.IndexId = manageStudent.CountStudent();
 
-            if (manageStudent.CountStudent() > 0)
-            {
-                while (true)
-                {
-                    DisplayMenu();
-
-                    int key = GetInput.GetOption();
-                    switch (key)
-                    {
-                        case 0:
-                            manageStudent.SaveFile(manageStudent.getStudents(), path);
-                            return;
-
-                        case 1:
-                            manageStudent.AddStudent();
-                            break;
-
-                        case 2:
-                            manageStudent.ShowStudent(manageStudent.FindByID(GetInput.GetID()));
-                            break;
-
-                        case 3:
-                            manageStudent.UpdateStudent(GetInput.GetID());
-                            break;
-
-                        case 4:
-                            manageStudent.DeleteStudent(GetInput.GetID());
-                            break;
-
-                        case 5:
-                            manageStudent.DisplayByRank();
-                            break;
-
-                        case 6:
-                            manageStudent.DisplayByGPA();
-                            break;
-
-                        case 7:
-                            manageStudent.ShowStudenByRank();
-                            break;
-
-                        case 8:
-                            manageStudent.ShowStudents(manageStudent.getStudents());
-                            break;
-
-                        default:
-                            Console.WriteLine("Enter number from 0 to 8");
-                            break;
-                    }
-                }
-            }
-            else
+            if (manageStudent.CountStudent() == 0)
             {
                 Console.WriteLine("NO DATA!!!");
+                Console.WriteLine("Add Student!");
+                manageStudent.AddStudent();
+            } else
+            {
+                Console.WriteLine("Read data successfully");
+                Console.WriteLine("------------------------------------------------");
             }
 
+            while (true)
+            {
+                DisplayMenu();
+
+                int key = GetInput.GetOption();
+                switch (key)
+                {
+                    case 0:
+                        manageStudent.SaveFile(manageStudent.getStudents(), path);
+                        return;
+
+                    case 1:
+                        manageStudent.AddStudent();
+                        break;
+
+                    case 2:
+                        manageStudent.ShowStudent(manageStudent.FindByID(GetInput.GetID()));
+                        break;
+
+                    case 3:
+                        manageStudent.UpdateStudent(GetInput.GetID());
+                        break;
+
+                    case 4:
+                        manageStudent.DeleteStudent(GetInput.GetID());
+                        break;
+
+                    case 5:
+                        manageStudent.DisplayByRank();
+                        break;
+
+                    case 6:
+                        manageStudent.DisplayByGPA();
+                        break;
+
+                    case 7:
+                        manageStudent.ShowStudenByRank();
+                        break;
+
+                    case 8:
+                        manageStudent.ShowStudents(manageStudent.getStudents());
+                        break;
+
+                    default:
+                        Console.WriteLine("Enter number from 0 to 8");
+                        break;
+                }
+            }
         }
         static void DisplayMenu()
         {

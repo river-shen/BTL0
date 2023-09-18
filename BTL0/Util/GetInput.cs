@@ -1,27 +1,18 @@
-﻿using BTL0.Constant;
-using BTL0.Controller;
-
-namespace BTL0.Util
+﻿namespace BTL0.Util
 {
     public class GetInput
     {
         public static string GetName()
         {
             string? input = null;
+            bool check = false;
 
             Console.Write("Enter Student Name: ");
-            while (true)
+            while (!check)
             {
                 input = GetString();
-                if (input.Length < StudentConstant.MAX_LENGTH_NAME)
-                {
-                    break;
-                }
-                else
-                {
-                    Console.Write($"Must smaller than {StudentConstant.MAX_LENGTH_NAME} " +
-                                  $"characters and not null! Enter again: ");
-                }
+                check = Validation.CheckPropertyCondition(input,
+                                            Constant.Constant.MaxLengthName);
             }
             return input;
         }
@@ -29,16 +20,17 @@ namespace BTL0.Util
         public static DateTime GetDateTime()
         {
             DateTime inputDateTime = DateTime.Now;
-            bool check = true;
+            bool check = false;
 
             Console.Write("Enter student's birth date (as mm/dd/yyyy): ");
-            while (check)
+            while (!check)
             {
                 string? input = Console.ReadLine();
                 if (Validation.IsValiDate(input))
                 {
-                    check = false;
                     inputDateTime = DateTime.Parse(input);
+                    check = Validation.CheckPropertyCondition(inputDateTime.Year,
+                                            Constant.Constant.MinYear, DateTime.Now.Year);
                 }
                 else
                 {
@@ -48,23 +40,17 @@ namespace BTL0.Util
             return inputDateTime;
         }
 
-        public static string GetAdress()
+        public static string GetAddress()
         {
             string? input = null;
+            bool check = false;
 
             Console.Write("Enter Address: ");
-            while (true)
+            while (!check)
             {
                 input = GetString();
-                if (input.Length < StudentConstant.MAX_LENGTH_ADDRESS)
-                {
-                    break;
-                }
-                else
-                {
-                    Console.Write($"Must smaller than {StudentConstant.MAX_LENGTH_ADDRESS} " +
-                                  $"characters and not null! Enter again: ");
-                }
+                check = Validation.CheckPropertyCondition(input,
+                                            Constant.Constant.MaxLengthAddress);
             }
             return input;
         }
@@ -72,20 +58,14 @@ namespace BTL0.Util
         public static double GetHeight()
         {
             double inputNumberDouble = 0;
-            bool check = true;
+            bool check = false;
 
             Console.Write("Enter Height: ");
-            while (check)
+            while (!check)
             {
                 inputNumberDouble = GetDouble();
-                if (inputNumberDouble <= StudentConstant.MAX_HEIGHT && inputNumberDouble >= StudentConstant.MIN_HEIGHT)
-                {
-                    check = false;
-                }
-                else
-                {
-                    Console.Write($"Must from {StudentConstant.MIN_HEIGHT}cm to {StudentConstant.MAX_HEIGHT}cm! Enter again: ");
-                }
+                check = Validation.CheckPropertyCondition(inputNumberDouble,
+                    Constant.Constant.MinHeight, Constant.Constant.MaxHeight);
             }
             return inputNumberDouble;
         }
@@ -93,60 +73,62 @@ namespace BTL0.Util
         public static double GetWeight()
         {
             double inputNumberDouble = 0;
-            bool check = true;
+            bool check = false;
 
             Console.Write("Enter Weight: ");
-            while (check)
+            while (!check)
             {
                 inputNumberDouble = GetDouble();
-                if (inputNumberDouble <= StudentConstant.MAX_HEIGHT && inputNumberDouble >= StudentConstant.MIN_WEIGHT)
-                {
-                    check = false;
-                }
-                else
-                {
-                    Console.Write($"Must from {StudentConstant.MIN_WEIGHT}kg to {StudentConstant.MAX_HEIGHT}kg! Enter again: ");
-                }
+                check = Validation.CheckPropertyCondition(inputNumberDouble,
+                                    Constant.Constant.MinWeight, Constant.Constant.MaxWeight);
             }
             return inputNumberDouble;
         }
 
-        public static string InputStudentCode()
+        public static string GenerateStudentCode(int id)
         {
-            string input = null;
+            int key = id.ToString().Length;
+            switch(key)
+            {
+                case 1:
+                    return $"OCEANTECH00{id}";
+                case 2:
+                    return $"OCEANTECH0{id}";
+                default:
+                    return $"OCEANTECH{id}";
+            }
+        }
+
+        /*public static string InputStudentCode()
+        {
+            string? input = null;
 
             Console.Write("Enter Student ID: ");
             while (true)
             {
                 input = GetString();
-                if (input.Length == StudentConstant.LENGTH_STUDENTCODE)
+                if (input.Length == Constant.Constant.LengthStudentCode)
                 {
                     break;
                 }
-                else
-                {
-                    Console.Write($"Must have {StudentConstant.LENGTH_STUDENTCODE} characters! Enter again: ");
-                }
+                Console.Write($"Must have {Constant.Constant.LengthStudentCode} " +
+                              $"characters! Enter again: ");
+
             }
             return input;
-        }
+        }*/
 
         public static string GetSchoolName()
         {
-            string input = null;
+            string? input = null;
+            bool check = false;
 
             Console.Write("Enter name of School: ");
-            while (true)
+            while (!check)
             {
                 input = GetString();
-                if (input.Length < StudentConstant.MAX_LENGTH_SCHOOL_NAME)
-                {
-                    break;
-                }
-                else
-                {
-                    Console.Write($"Must smaller than {StudentConstant.MAX_LENGTH_SCHOOL_NAME} characters and not null! Enter again: ");
-                }
+                check = Validation.CheckPropertyCondition(input,
+                                                Constant.Constant.MaxLengthSchoolName);
             }
             return input;
         }
@@ -154,20 +136,14 @@ namespace BTL0.Util
         public static int GetYearOfAdmission()
         {
             int inputNumberInt = 0;
-            bool check = true;
+            bool check = false;
 
-            Console.Write("Enter year of addmission: ");
-            while (check)
+            Console.Write("Enter year of admission: ");
+            while (!check)
             {
                 inputNumberInt = GetInt();
-                if (inputNumberInt >= StudentConstant.MIN_YEAR && inputNumberInt <= DateTime.Now.Year)
-                {
-                    check = false;
-                }
-                else
-                {
-                    Console.Write($"Must from {StudentConstant.MIN_YEAR} to {DateTime.Now.Year}! Enter again: ");
-                }
+                check = Validation.CheckPropertyCondition(inputNumberInt,
+                                        Constant.Constant.MinYear, DateTime.Now.Year);
             }
             return inputNumberInt;
         }
@@ -175,20 +151,14 @@ namespace BTL0.Util
         public static double GetGPA()
         {
             double inputNumberDouble = 0;
-            bool check = true;
+            bool check = false;
 
             Console.Write("Enter GPA: ");
-            while (check)
+            while (!check)
             {
                 inputNumberDouble = GetDouble();
-                if (inputNumberDouble <= StudentConstant.MAX_GPA && inputNumberDouble >= StudentConstant.MIN_GPA)
-                {
-                    check = false;
-                }
-                else
-                {
-                    Console.Write($"Must from {StudentConstant.MIN_GPA} to {StudentConstant.MAX_GPA}! Enter again: ");
-                }
+                check = Validation.CheckPropertyCondition(inputNumberDouble,
+                                    Constant.Constant.MinGpa, Constant.Constant.MaxGpa);
             }
             return inputNumberDouble;
         }
@@ -207,10 +177,7 @@ namespace BTL0.Util
                         inputNumberInt = Convert.ToInt32(input);
                         break;
                     }
-                    else
-                    {
-                        Console.Write("Enter a number: ");
-                    }
+                    Console.Write("Enter a number: ");
                 }
                 else
                 {
@@ -223,8 +190,7 @@ namespace BTL0.Util
         public static int GetOption()
         {
             Console.Write("Enter Option: ");
-            int key = GetInt();
-            return key;
+            return GetInt();
         }
 
         public static double GetDouble()
@@ -240,10 +206,7 @@ namespace BTL0.Util
                         inputNumberDouble = Convert.ToDouble(input);
                         break;
                     }
-                    else
-                    {
-                        Console.Write("Not a number! Enter again: ");
-                    }
+                    Console.Write("Not a number! Enter again: ");
                 }
                 else
                 {
@@ -263,13 +226,9 @@ namespace BTL0.Util
                 {
                     break;
                 }
-                else
-                {
-                    Console.Write("Invalid Input! Enter again: ");
-                }
+                Console.Write("Invalid Input! Enter again: ");
             }
             return input;
-
         }
 
         public static int GetID()

@@ -1,100 +1,40 @@
 ﻿1
-Tran Minh Chien
-02/28/2003
-Tu Son
-180
-70
-2021532100
-HUST
-2021
-1.2
-2
 Nguyen Tien Lam
 05/31/2003
-Tu Son
-180
-78
-1234567890
-HUST
-2021
-9.9
-3
-Binh Ngu
-02/09/2003
-Tu Son
+Tu son
 180
 70
-4567890123
+OCEANTECH001
 HUST
 2021
-5.5
-4
-...
-01/01/2000
-...
-50
-5
-0987654312
-...
-1901
-0.1
-5
-....
-01/01/2002
-....
-50
-50
-1236547890
-....
-2023
-4.9
-6
-......
-05/30/2004
-......
-180
-70
-quertyuiop
-hfosij
-1999
-10
-7
-Hello
-04/04/2004
-Hello
-300
-300
-;lkjhgfdsa
-cvbn
-1900
-0.1
 8
-GoodBye
-08/08/1990
-jfosijfd
+3
+Nguyen Dinh Hong Phong
+08/29/2003
+Tu Son
 180
 70
-asdfghjkl;
-nojoij
-2023
-7.7
-9
-fsdoiwe
-05/31/2003
-fjowiej
+OCEANTECH003
+HUST
+2021
+6
+4
+Tran Minh Chien
+12/29/2003
+NGU
 180
-72
-qwertyuiop
-fjoiewn
-2018
-9.9
-10
-jfoeiwnewsdksfdnofi
-06/06/1999
-jfiowejfew
+70
+OCEANTECH004
+HUST
+2021
+5
+5
+Tran Van Hung
+02/02/2003
+Tu Son
 180
-87
-';lkjhgfds
-joifewnfewio
-2010
-5.5
+70
+OCEANTECH005
+HUST
+2021
+4
