@@ -4,15 +4,15 @@
     {
         public static int IndexId = 0;
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string Address { get; set; }
+        public string? Address { get; set; }
         public double Height { get; set; }
         public double Weight { get; set; }
 
-        public Person() { }
+        protected Person() { }
 
-        public Person(string name, DateTime dateOfBirth, string address, 
+        protected Person(string? name, DateTime dateOfBirth, string? address, 
                         double height, double weight)
         {
             Id = GenerateId();
@@ -22,6 +22,7 @@
             Height = height;
             Weight = weight;
         }
+
         public static int GenerateId()
         {
             return IndexId++;
@@ -34,7 +35,7 @@
                    $"Date Of Birth: {DateOfBirth}\n" +
                    $"Address: {Address}\n" +
                    $"Height: {Height} cm\n" +
-                   $"Weigth: {Weight} kg";
+                   $"Weight: {Weight} kg";
         }
     }
 }

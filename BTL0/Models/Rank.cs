@@ -2,11 +2,11 @@
 {
     public enum Rank
     {
-        POOR,
-        WEAK,
-        AVERAGE,
-        GOOD,
-        VERY_GOOD,
-        EXCELLENT
+        Poor,
+        Weak,
+        Average,
+        Good,
+        VeryGood,
+        Excellent
     }
 }

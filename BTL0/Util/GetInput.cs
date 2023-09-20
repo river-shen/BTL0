@@ -1,36 +1,21 @@
 ﻿namespace BTL0.Util
 {
-    public class GetInput
+    public abstract class GetInput
     {
-        public static string GetName()
-        {
-            string? input = null;
-            bool check = false;
-
-            Console.Write("Enter Student Name: ");
-            while (!check)
-            {
-                input = GetString();
-                check = Validation.CheckPropertyCondition(input,
-                                            Constant.Constant.MaxLengthName);
-            }
-            return input;
-        }
-
         public static DateTime GetDateTime()
         {
-            DateTime inputDateTime = DateTime.Now;
-            bool check = false;
+            var inputDateTime = DateTime.Now;
+            var check = false;
 
             Console.Write("Enter student's birth date (as mm/dd/yyyy): ");
             while (!check)
             {
-                string? input = Console.ReadLine();
-                if (Validation.IsValiDate(input))
+                var input = Console.ReadLine();
+                if (input != null && Validation.IsValiDate(input))
                 {
                     inputDateTime = DateTime.Parse(input);
                     check = Validation.CheckPropertyCondition(inputDateTime.Year,
-                                            Constant.Constant.MinYear, DateTime.Now.Year);
+                        Constant.Constant.MinYear, DateTime.Now.Year);
                 }
                 else
                 {
@@ -39,64 +24,38 @@
             }
             return inputDateTime;
         }
-
-        public static string GetAddress()
+        
+        public static string? GetName()
         {
-            string? input = null;
-            bool check = false;
+            return GetData("Enter Student Name", Constant.Constant.MaxLengthName);
+        }
 
-            Console.Write("Enter Address: ");
-            while (!check)
-            {
-                input = GetString();
-                check = Validation.CheckPropertyCondition(input,
-                                            Constant.Constant.MaxLengthAddress);
-            }
-            return input;
+        public static string? GetAddress()
+        {
+            return GetData("Enter Address", Constant.Constant.MaxLengthAddress);
         }
 
         public static double GetHeight()
         {
-            double inputNumberDouble = 0;
-            bool check = false;
-
-            Console.Write("Enter Height: ");
-            while (!check)
-            {
-                inputNumberDouble = GetDouble();
-                check = Validation.CheckPropertyCondition(inputNumberDouble,
-                    Constant.Constant.MinHeight, Constant.Constant.MaxHeight);
-            }
-            return inputNumberDouble;
+            return GetData("Enter Height", Constant.Constant.MinHeight, Constant.Constant.MaxHeight);
         }
 
         public static double GetWeight()
         {
-            double inputNumberDouble = 0;
-            bool check = false;
-
-            Console.Write("Enter Weight: ");
-            while (!check)
-            {
-                inputNumberDouble = GetDouble();
-                check = Validation.CheckPropertyCondition(inputNumberDouble,
-                                    Constant.Constant.MinWeight, Constant.Constant.MaxWeight);
-            }
-            return inputNumberDouble;
+            return GetData("Enter Weight", Constant.Constant.MinWeight, Constant.Constant.MaxWeight);
         }
 
-        public static string GenerateStudentCode(int id)
+        
+
+        public static string? GenerateStudentCode(int id)
         {
-            int key = id.ToString().Length;
-            switch(key)
+            var key = id.ToString().Length;
+            return key switch
             {
-                case 1:
-                    return $"OCEANTECH00{id}";
-                case 2:
-                    return $"OCEANTECH0{id}";
-                default:
-                    return $"OCEANTECH{id}";
-            }
+                1 => Constant.Constant.Code + $"00{id}",
+                2 => Constant.Constant.Code + $"0{id}",
+                _ => Constant.Constant.Code + $"{id}"
+            };
         }
 
         /*public static string InputStudentCode()
@@ -118,58 +77,72 @@
             return input;
         }*/
 
-        public static string GetSchoolName()
+        public static string? GetSchoolName()
         {
-            string? input = null;
-            bool check = false;
-
-            Console.Write("Enter name of School: ");
-            while (!check)
-            {
-                input = GetString();
-                check = Validation.CheckPropertyCondition(input,
-                                                Constant.Constant.MaxLengthSchoolName);
-            }
-            return input;
+            return GetData("Enter name of School", Constant.Constant.MaxLengthSchoolName);
         }
 
         public static int GetYearOfAdmission()
         {
-            int inputNumberInt = 0;
-            bool check = false;
-
-            Console.Write("Enter year of admission: ");
-            while (!check)
-            {
-                inputNumberInt = GetInt();
-                check = Validation.CheckPropertyCondition(inputNumberInt,
-                                        Constant.Constant.MinYear, DateTime.Now.Year);
-            }
-            return inputNumberInt;
+            return GetData("Enter year of admission", Constant.Constant.MinYear, DateTime.Now.Year);
         }
 
-        public static double GetGPA()
+        public static double GetGpa()
+        {
+            return GetData("Enter GPA", Constant.Constant.MinGpa, Constant.Constant.MaxGpa);
+        }
+        
+        private static string? GetData(string type, int maxLength)
+        {
+            string? input = null;
+            var check = false;
+
+            Console.Write(type + ": ");
+            while (!check)
+            {
+                input = GetString();
+                check = Validation.CheckPropertyCondition(input, maxLength);
+            }
+            return input;
+        }
+        
+        private static double GetData(string type, double min, double max)
         {
             double inputNumberDouble = 0;
-            bool check = false;
+            var check = false;
 
-            Console.Write("Enter GPA: ");
+            Console.Write(type + ": ");
             while (!check)
             {
                 inputNumberDouble = GetDouble();
                 check = Validation.CheckPropertyCondition(inputNumberDouble,
-                                    Constant.Constant.MinGpa, Constant.Constant.MaxGpa);
+                    min, max);
             }
             return inputNumberDouble;
         }
-
-        public static int GetInt()
+        
+        private static int GetData(string type, int min, int max)
         {
-            string? input = null;
-            int inputNumberInt = 0;
+            var inputNumberDouble = 0;
+            var check = false;
+
+            Console.Write(type + ": ");
+            while (!check)
+            {
+                inputNumberDouble = GetInt();
+                check = Validation.CheckPropertyCondition(inputNumberDouble,
+                    min, max);
+            }
+            return inputNumberDouble;
+        }
+        
+
+        private static int GetInt()
+        {
+            var inputNumberInt = 0;
             while (true)
             {
-                input = Console.ReadLine();
+                var input = Console.ReadLine();
                 if (Validation.IsTextNull(input))
                 {
                     if (Validation.IsNumberInt(input))
@@ -186,19 +159,13 @@
             }
             return inputNumberInt;
         }
-
-        public static int GetOption()
-        {
-            Console.Write("Enter Option: ");
-            return GetInt();
-        }
-
-        public static double GetDouble()
+        
+        private static double GetDouble()
         {
             double inputNumberDouble = 0;
             while (true)
             {
-                string? input = Console.ReadLine();
+                var input = Console.ReadLine();
                 if (Validation.IsTextNull(input))
                 {
                     if (Validation.IsNumberDouble(input))
@@ -216,7 +183,7 @@
             return inputNumberDouble;
         }
 
-        public static string GetString()
+        private static string GetString()
         {
             string? input = null;
             while (true)
@@ -231,11 +198,17 @@
             return input;
         }
 
-        public static int GetID()
+        public static int GetId()
         {
             Console.WriteLine("----------------------------------------");
             Console.Write("Enter ID: ");
             return (GetInt() - 1);
+        }
+        
+        public static int GetOption()
+        {
+            Console.Write("Enter Option: ");
+            return GetInt();
         }
     }
 }

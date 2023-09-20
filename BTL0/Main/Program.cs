@@ -8,7 +8,7 @@ namespace BTL0.Main
     {
         public static void Main(string[] args)
         {
-            ManageStudent manageStudent = new ManageStudent();
+            var manageStudent = new ManageStudent();
 
             // path current
             var directory = AppContext.BaseDirectory.Split(Path.DirectorySeparatorChar);
@@ -16,11 +16,11 @@ namespace BTL0.Main
             var path = Path.Combine(slice.ToArray()) + "\\StudentData.txt";
 
             manageStudent.ReadFromFile(path);
-            manageStudent.ShowStudents(manageStudent.getStudents());
+            manageStudent.ShowStudents();
             // Person.IndexId = manageStudent.getStudents().FindLast()
             // Person.IndexId = manageStudent.CountStudent();
 
-            if (manageStudent.CountStudent() == 0)
+            if (ManageStudent.CountStudent() == 0)
             {
                 Console.WriteLine("NO DATA!!!");
                 Console.WriteLine("Add Student!");
@@ -33,13 +33,13 @@ namespace BTL0.Main
 
             while (true)
             {
-                DisplayMenu();
+                MenuOptions();
 
-                int key = GetInput.GetOption();
+                var key = GetInput.GetOption();
                 switch (key)
                 {
                     case 0:
-                        manageStudent.SaveFile(manageStudent.getStudents(), path);
+                        manageStudent.SaveFile(ManageStudent.GetStudents(), path);
                         return;
 
                     case 1:
@@ -47,31 +47,31 @@ namespace BTL0.Main
                         break;
 
                     case 2:
-                        manageStudent.ShowStudent(manageStudent.FindByID(GetInput.GetID()));
+                        ManageStudent.ShowStudent(manageStudent.FindById(GetInput.GetId()));
                         break;
 
                     case 3:
-                        manageStudent.UpdateStudent(GetInput.GetID());
+                        manageStudent.UpdateStudent(GetInput.GetId());
                         break;
 
                     case 4:
-                        manageStudent.DeleteStudent(GetInput.GetID());
+                        manageStudent.DeleteStudent(GetInput.GetId());
                         break;
 
                     case 5:
-                        manageStudent.DisplayByRank();
+                        ManageStudent.DisplayByRank();
                         break;
 
                     case 6:
-                        manageStudent.DisplayByGPA();
+                        ManageStudent.DisplayByGpa();
                         break;
 
                     case 7:
-                        manageStudent.ShowStudenByRank();
+                        manageStudent.ShowStudentByRank();
                         break;
 
                     case 8:
-                        manageStudent.ShowStudents(manageStudent.getStudents());
+                        manageStudent.ShowStudents();
                         break;
 
                     default:
@@ -80,7 +80,8 @@ namespace BTL0.Main
                 }
             }
         }
-        static void DisplayMenu()
+
+        private static void MenuOptions()
         {
             Console.WriteLine("\nMANAGE STUDENT C#");
             Console.WriteLine("+-----------------MENU----------------------+");
@@ -90,7 +91,7 @@ namespace BTL0.Main
             Console.WriteLine("| 4. Delete Student                         |");
             Console.WriteLine("| 5. Display by rank                        |");
             Console.WriteLine("| 6. Display by GPA                         |");
-            Console.WriteLine("| 7. Show Studen by Rank                    |");
+            Console.WriteLine("| 7. Show Student by Rank                    |");
             Console.WriteLine("| 8. Show Students                          |");
             Console.WriteLine("---------------------------------------------");
             Console.WriteLine("| 0. Exit                                   |");

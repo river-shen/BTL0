@@ -13,5 +13,7 @@
         public const int MinYear = 1900;
         public const double MinGpa = 0.0;
         public const double MaxGpa = 10.0;
+
+        public const string Code = "OCEANTECH";
     }
 }

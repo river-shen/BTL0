@@ -2,7 +2,7 @@
 
 namespace BTL0.Util
 {
-    public class Validation
+    public abstract class Validation
     {
         public static bool IsValiDate(string date)
         {
