@@ -1,12 +1,12 @@
 ﻿using BTL0.Controller;
-using BTL0.Models;
 using BTL0.Util;
+using BTL0.Menu;
 
 namespace BTL0.Main
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main(string[] args) 
         {
             var manageStudent = new ManageStudent();
 
@@ -17,10 +17,8 @@ namespace BTL0.Main
 
             manageStudent.ReadFromFile(path);
             manageStudent.ShowStudents();
-            // Person.IndexId = manageStudent.getStudents().FindLast()
-            // Person.IndexId = manageStudent.CountStudent();
 
-            if (ManageStudent.CountStudent() == 0)
+            if (ManageStudent.Students.Count == 0)
             {
                 Console.WriteLine("NO DATA!!!");
                 Console.WriteLine("Add Student!");
@@ -39,7 +37,7 @@ namespace BTL0.Main
                 switch (key)
                 {
                     case 0:
-                        manageStudent.SaveFile(ManageStudent.GetStudents(), path);
+                        manageStudent.SaveFile(manageStudent.GetStudents(), path);
                         return;
 
                     case 1:
@@ -47,7 +45,7 @@ namespace BTL0.Main
                         break;
 
                     case 2:
-                        ManageStudent.ShowStudent(manageStudent.FindById(GetInput.GetId()));
+                        manageStudent.ShowStudent(manageStudent.FindById(GetInput.GetId()));
                         break;
 
                     case 3:
@@ -59,11 +57,11 @@ namespace BTL0.Main
                         break;
 
                     case 5:
-                        ManageStudent.DisplayByRank();
+                        manageStudent.DisplayByRank();
                         break;
 
                     case 6:
-                        ManageStudent.DisplayByGpa();
+                        manageStudent.DisplayByGpa();
                         break;
 
                     case 7:
@@ -80,8 +78,7 @@ namespace BTL0.Main
                 }
             }
         }
-
-        private static void MenuOptions()
+        public static void MenuOptions()
         {
             Console.WriteLine("\nMANAGE STUDENT C#");
             Console.WriteLine("+-----------------MENU----------------------+");

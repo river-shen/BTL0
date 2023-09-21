@@ -6,35 +6,9 @@ namespace BTL0.Controller
 {
     public class ManageStudent
     {
-        private static readonly List<Student> Students = new List<Student>();
-        public ManageStudent() { }
-
-        public static int CountStudent()
-        {
-            return Students?.Count ?? 0;
-        }
-
-        /*public String GetStudentCode()
-        {
-            while (true)
-            {
-                string studentCode = GetInput.InputStudentCode();
-                if (ExistByStudentCode(studentCode))
-                {
-                    Console.Write("Input is existed! Enter again: ");
-                    continue;
-                }
-                return studentCode;
-            }
-        }*/
-
-        /*public bool ExistByStudentCode(string studentCode)
-        {
-            return students.Select(student => student.StudentCode.ToUpper())
-                .Contains(studentCode.ToUpper());
-        }*/
+        public static readonly List<Student> Students = new List<Student>();
         
-        public virtual void AddStudent()
+        public void AddStudent()
         {
             var student = new Student
             {
@@ -44,8 +18,6 @@ namespace BTL0.Controller
                 Address = GetInput.GetAddress(),
                 Height = GetInput.GetHeight(),
                 Weight = GetInput.GetWeight(),
-                // StudentCode = GetInput.GenerateStudentCode(student.Id+1),
-                // StudentCode = GetStudentCode(),
                 SchoolName = GetInput.GetSchoolName(),
                 YearOfAdmission = GetInput.GetYearOfAdmission(),
                 Gpa = GetInput.GetGpa()
@@ -55,9 +27,10 @@ namespace BTL0.Controller
             Console.WriteLine("Add Student: ");
             ShowStudent(student);
             Students.Add(student);
-            Console.WriteLine("\nAdd successfully");
+            Console.WriteLine("\nAdd successfully!");
         }
-        public static void ShowStudent(Student? student)
+        
+        public void ShowStudent(Student? student)
         {
             if (student == null)
             {
@@ -65,22 +38,12 @@ namespace BTL0.Controller
                 return;
             }
             Console.WriteLine("-----------------------------------");
-            Console.WriteLine("ID: " + (student.Id + 1));
-            Console.WriteLine($"Name: {student.Name}");
-            Console.WriteLine($"Date Of Birth: {student.DateOfBirth}");
-            Console.WriteLine($"Address: {student.Address}");
-            Console.WriteLine($"Height: {student.Height}");
-            Console.WriteLine($"Weight: {student.Weight}");
-            Console.WriteLine($"StudentCode: {student.StudentCode}");
-            Console.WriteLine($"Name of School: {student.SchoolName}");
-            Console.WriteLine($"Year of Admission: {student.YearOfAdmission}");
-            Console.WriteLine($"GPA: {student.Gpa}");
             student.Rank = Student.SetRank(student.Gpa);
-            Console.WriteLine($"Rank: {student.Rank}");
+            Console.WriteLine(student.ToString());
             Console.WriteLine("----------------------------------");
         }
 
-        public virtual void ShowStudents()
+        public void ShowStudents()
         {
             foreach (var student in Students)
             {
@@ -88,29 +51,18 @@ namespace BTL0.Controller
             }
         }
 
-        public static List<Student> GetStudents()
+        public List<Student> GetStudents()
         {
             return Students;
         }
 
-        public virtual Student? FindById(int id)
+        public Student? FindById(int id)
         {
-            if (id < 0 || id >= Students.Count)
-            {
-                return null;
-            }
             return Students.FirstOrDefault(x => x.Id == id);
         }
 
-        public void UpdateStudent(int id)
+        public void MenuUpdate()
         {
-            var student = FindById(id);
-            if (student == null)
-            {
-                Console.WriteLine($"Invalid ID");
-                return;
-            }
-
             Console.WriteLine("");
             Console.WriteLine("--------------------");
             Console.WriteLine("|1.Name             |");
@@ -123,7 +75,18 @@ namespace BTL0.Controller
             Console.WriteLine("|8.GPA              |");
             Console.WriteLine("---------------------");
             Console.WriteLine("");
-            Console.Write("Choose option: ");
+        }
+
+        public void UpdateStudent(int id)
+        {
+            var student = FindById(id);
+            if (student == null)
+            {
+                Console.WriteLine($"Invalid ID");
+                return;
+            }
+
+            MenuUpdate();
 
             var key = GetInput.GetOption();
             switch (key)
@@ -159,11 +122,14 @@ namespace BTL0.Controller
                 case 8:
                     student.Gpa = GetInput.GetGpa();
                     break;
+
                 default:
                     Console.WriteLine("INVALID!");
                     break;
             }
-            ShowStudent(Students[id]);
+            Students.IndexOf(student);
+            ShowStudent(student);
+            Console.WriteLine("Update Successfully");
         }
 
         public void DeleteStudent(int id)
@@ -183,7 +149,7 @@ namespace BTL0.Controller
             }
         }
 
-        public static void DisplayByRank()
+        public void DisplayByRank()
         {
             var rankFromInput = from student in Students             
                                 group student by student.Rank into gr 
@@ -192,12 +158,11 @@ namespace BTL0.Controller
             rankFromInput = rankFromInput.OrderByDescending(s => s.Count());
             foreach (var gr in rankFromInput)
             {
-                Console.WriteLine("{0,-10}   {1,5}%", gr.Key, 100 * gr.Count() / Students.Count());
+                Console.WriteLine("{0,-10}   {1,5}%", gr.Key, 100 * gr.Count() / Students.Count);
             }
-            
         }
 
-        public static void DisplayByGpa()
+        public void DisplayByGpa()
         {
             int countStudent = Students.Count();
             var rankFromInput = from student in Students              
@@ -211,7 +176,7 @@ namespace BTL0.Controller
             }
         }
 
-        protected virtual void RankOption()
+        public void RankOption()
         {
             Console.WriteLine("---------------------------");
             Console.WriteLine("1. EXCELLENT");
@@ -225,7 +190,7 @@ namespace BTL0.Controller
 
         public void ShowStudentByRank()
         {
-            var rank = new Rank();
+            Rank rank;
             RankOption();
             switch (GetInput.GetOption())
             {
@@ -268,7 +233,7 @@ namespace BTL0.Controller
             }
         }
 
-        public virtual void SaveFile(List<Student> students, string path)
+        public void SaveFile(List<Student> students, string path)
         {
             if (students == null) throw new ArgumentNullException(nameof(students));
             try
@@ -295,12 +260,12 @@ namespace BTL0.Controller
             }
         }
 
-        public virtual void ReadFromFile(string path)
+        public void ReadFromFile(string path)
         {
             try
             {
                 using var sr = new StreamReader(path, Encoding.UTF8);
-                string? line = sr.ReadLine();
+                var line = sr.ReadLine();
                 while (line != null)
                 {
                     var student = new Student

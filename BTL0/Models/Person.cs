@@ -2,8 +2,8 @@
 {
     public class Person
     {
-        public static int IndexId = 0;
-        public int Id { get; set; }
+        public static int IndexId;
+        public int Id { get; init; }
         public string? Name { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string? Address { get; set; }
@@ -30,7 +30,7 @@
 
         public override string ToString()
         {
-            return $"Id: {Id}\n" +
+            return $"Id: {Id+1}\n" +
                    $"Name: {Name}\n" +
                    $"Date Of Birth: {DateOfBirth}\n" +
                    $"Address: {Address}\n" +

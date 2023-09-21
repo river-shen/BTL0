@@ -27,7 +27,8 @@
                    $"Student ID: {StudentCode}\n" +
                    $"School Name: {SchoolName}\n" +
                    $"Year Of Admission: {YearOfAdmission}\n" +
-                   $"GPA: {Gpa}";
+                   $"GPA: {Gpa}\n" +
+                   $"Rank: {Rank}";
         }
 
         public static Rank SetRank(double gpa)

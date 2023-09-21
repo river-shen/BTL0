@@ -11,7 +11,7 @@
             while (!check)
             {
                 var input = Console.ReadLine();
-                if (input != null && Validation.IsValiDate(input))
+                if (input != null && Validation.IsDateTime(input))
                 {
                     inputDateTime = DateTime.Parse(input);
                     check = Validation.CheckPropertyCondition(inputDateTime.Year,
@@ -45,9 +45,7 @@
             return GetData("Enter Weight", Constant.Constant.MinWeight, Constant.Constant.MaxWeight);
         }
 
-        
-
-        public static string? GenerateStudentCode(int id)
+        public static string GenerateStudentCode(int id)
         {
             var key = id.ToString().Length;
             return key switch
@@ -57,25 +55,6 @@
                 _ => Constant.Constant.Code + $"{id}"
             };
         }
-
-        /*public static string InputStudentCode()
-        {
-            string? input = null;
-
-            Console.Write("Enter Student ID: ");
-            while (true)
-            {
-                input = GetString();
-                if (input.Length == Constant.Constant.LengthStudentCode)
-                {
-                    break;
-                }
-                Console.Write($"Must have {Constant.Constant.LengthStudentCode} " +
-                              $"characters! Enter again: ");
-
-            }
-            return input;
-        }*/
 
         public static string? GetSchoolName()
         {
@@ -135,15 +114,14 @@
             }
             return inputNumberDouble;
         }
-        
 
         private static int GetInt()
         {
-            var inputNumberInt = 0;
+            int inputNumberInt;
             while (true)
             {
                 var input = Console.ReadLine();
-                if (Validation.IsTextNull(input))
+                if (input != null && Validation.IsTextNull(input))
                 {
                     if (Validation.IsNumberInt(input))
                     {
@@ -162,11 +140,11 @@
         
         private static double GetDouble()
         {
-            double inputNumberDouble = 0;
+            double inputNumberDouble;
             while (true)
             {
                 var input = Console.ReadLine();
-                if (Validation.IsTextNull(input))
+                if (input != null && Validation.IsTextNull(input))
                 {
                     if (Validation.IsNumberDouble(input))
                     {
@@ -185,11 +163,11 @@
 
         private static string GetString()
         {
-            string? input = null;
+            string? input;
             while (true)
             {
                 input = Console.ReadLine();
-                if (Validation.IsTextNull(input))
+                if (input != null && Validation.IsTextNull(input))
                 {
                     break;
                 }
@@ -200,7 +178,7 @@
 
         public static int GetId()
         {
-            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("---------");
             Console.Write("Enter ID: ");
             return (GetInt() - 1);
         }
