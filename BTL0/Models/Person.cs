@@ -32,7 +32,7 @@
         {
             return $"Id: {Id+1}\n" +
                    $"Name: {Name}\n" +
-                   $"Date Of Birth: {DateOfBirth}\n" +
+                   $"Date Of Birth: {DateOfBirth.ToString("dd/MM/yyyy")}\n" +
                    $"Address: {Address}\n" +
                    $"Height: {Height} cm\n" +
                    $"Weight: {Weight} kg";

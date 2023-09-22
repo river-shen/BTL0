@@ -1,6 +1,5 @@
 ﻿using BTL0.Controller;
 using BTL0.Util;
-using BTL0.Menu;
 
 namespace BTL0.Main
 {
@@ -16,7 +15,6 @@ namespace BTL0.Main
             var path = Path.Combine(slice.ToArray()) + "\\StudentData.txt";
 
             manageStudent.ReadFromFile(path);
-            manageStudent.ShowStudents();
 
             if (ManageStudent.Students.Count == 0)
             {
@@ -25,13 +23,14 @@ namespace BTL0.Main
                 manageStudent.AddStudent();
             } else
             {
+                manageStudent.ShowStudents();
                 Console.WriteLine("Read data successfully");
                 Console.WriteLine("------------------------------------------------");
             }
 
             while (true)
             {
-                MenuOptions();
+                Menus.Menu.MainMenu();
 
                 var key = GetInput.GetOption();
                 switch (key)
@@ -73,26 +72,10 @@ namespace BTL0.Main
                         break;
 
                     default:
-                        Console.WriteLine("Enter number from 0 to 8");
+                        Console.WriteLine("INVALID!");
                         break;
                 }
             }
-        }
-        public static void MenuOptions()
-        {
-            Console.WriteLine("\nMANAGE STUDENT C#");
-            Console.WriteLine("+-----------------MENU----------------------+");
-            Console.WriteLine("| 1. Add Student                            |");
-            Console.WriteLine("| 2. Find Student By ID                     |");
-            Console.WriteLine("| 3. Update Student                         |");
-            Console.WriteLine("| 4. Delete Student                         |");
-            Console.WriteLine("| 5. Display by rank                        |");
-            Console.WriteLine("| 6. Display by GPA                         |");
-            Console.WriteLine("| 7. Show Student by Rank                    |");
-            Console.WriteLine("| 8. Show Students                          |");
-            Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("| 0. Exit                                   |");
-            Console.WriteLine("+-------------------------------------------+");
         }
     }
 }

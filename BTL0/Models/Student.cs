@@ -23,6 +23,7 @@
 
         public override string ToString()
         {
+            Rank = SetRank(Gpa);
             return $"{base.ToString()}\n" +
                    $"Student ID: {StudentCode}\n" +
                    $"School Name: {SchoolName}\n" +
@@ -33,11 +34,14 @@
 
         public static Rank SetRank(double gpa)
         {
-            if (gpa >= 9) return Rank.Excellent;
-            if (gpa >= 7.5) return Rank.VeryGood;
-            if (gpa >= 6.5) return Rank.Good;
-            if (gpa >= 5) return Rank.Average;
-            return gpa >= 3 ? Rank.Weak : Rank.Poor;
+            return gpa switch
+            {
+                >= 9 => Rank.Excellent,
+                >= 7.5 => Rank.VeryGood,
+                >= 6.5 => Rank.Good,
+                >= 5 => Rank.Average,
+                _ => gpa >= 3 ? Rank.Weak : Rank.Poor
+            };
         }
     }
 }

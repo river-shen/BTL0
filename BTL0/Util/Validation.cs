@@ -1,10 +1,18 @@
-﻿namespace BTL0.Util
+﻿using System.Globalization;
+
+namespace BTL0.Util
 {
     public abstract class Validation
     {
         public static bool IsDateTime(string date)
         {
-            return DateTime.TryParse(date, out _);
+            return DateTime.TryParseExact(date,
+                                          new string[] { "dd.MM.yyyy", "dd-MM-yyyy", "dd/MM/yyyy",
+                                                         "d-M-yyyy", "d-MM-yyyy", "dd-M-yyyy",
+                                                         "dd/M/yyyy", "d/M/yyyy", "d/MM/yyyy"},
+                                          CultureInfo.InvariantCulture,
+                                          DateTimeStyles.None,
+                                          out _);
         }
 
         public static bool IsNumberDouble(string input)

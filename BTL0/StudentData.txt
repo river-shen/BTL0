@@ -1,6 +1,6 @@
 ﻿1
 Nguyen Tien Lam
-05/31/2003
+31/05/2003
 Tu son
 180
 70
@@ -10,7 +10,7 @@ HUST
 8
 3
 Nguyen Dinh Hong Phong
-08/29/2003
+29/08/2003
 Tu Son
 180
 70
@@ -20,7 +20,7 @@ HUST
 6
 6
 Pham Phi HUng
-05/31/2003
+31/05/2003
 Tam Son
 180
 70
@@ -30,7 +30,7 @@ HUST
 3
 7
 Ngo Vinh Khanh
-05/31/2003
+26/03/2003
 Dinh Bua
 180
 70
@@ -40,47 +40,47 @@ OCEANTECH007
 2
 8
 Nguyen Nhu Tung
-05/31/2003
+26/03/2003
 Tu Soon
 180
 70
 OCEANTECH008
 HUST
 2021
-1
+6.5
 9
 Tran Van Hung
-05/31/2003
+31/05/2003
 Tu Son
 180
 70
 OCEANTECH009
 HUST
 2021
-2
+10
 10
 Ngo Vinh Khanh
-05/31/2003
+31/05/2003
 Thai Binh
 180
 70
 OCEANTECH010
 HUST
 2021
-4.5
+7.5
 11
 Hoang Trong Minh
-05/31/2003
+31/05/2003
 Nghe An
-178
+150
 45
 OCEANTECH011
 HUST
 2021
-1
+10
 12
 Tham Lap Phong
-05/31/2003
+31/05/2003
 Thai Nguyen
 180
 70
@@ -88,3 +88,13 @@ OCEANTECH012
 HUST
 2021
 7.8
+13
+Tran Van Luong
+03/05/2003
+Thanh Hoa
+180
+70
+OCEANTECH013
+HUST
+2021
+6.7

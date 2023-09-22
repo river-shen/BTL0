@@ -1,4 +1,6 @@
-﻿namespace BTL0.Util
+﻿using System.Globalization;
+
+namespace BTL0.Util
 {
     public abstract class GetInput
     {
@@ -7,13 +9,18 @@
             var inputDateTime = DateTime.Now;
             var check = false;
 
-            Console.Write("Enter student's birth date (as mm/dd/yyyy): ");
+            Console.Write("Enter student's birth date (as dd/mm/yyyy): ");
             while (!check)
             {
                 var input = Console.ReadLine();
                 if (input != null && Validation.IsDateTime(input))
                 {
-                    inputDateTime = DateTime.Parse(input);
+                    inputDateTime = DateTime.ParseExact(input,
+                                                        new string[] { "dd.MM.yyyy", "dd-MM-yyyy", "dd/MM/yyyy",
+                                                                       "d-M-yyyy", "d-MM-yyyy", "dd-M-yyyy",
+                                                                       "dd/M/yyyy", "d/M/yyyy", "d/MM/yyyy"},
+                                                        CultureInfo.InvariantCulture,
+                                                        DateTimeStyles.None);
                     check = Validation.CheckPropertyCondition(inputDateTime.Year,
                         Constant.Constant.MinYear, DateTime.Now.Year);
                 }
@@ -121,7 +128,7 @@
             while (true)
             {
                 var input = Console.ReadLine();
-                if (input != null && Validation.IsTextNull(input))
+                if (Validation.IsTextNull(input))
                 {
                     if (Validation.IsNumberInt(input))
                     {
@@ -144,7 +151,7 @@
             while (true)
             {
                 var input = Console.ReadLine();
-                if (input != null && Validation.IsTextNull(input))
+                if (Validation.IsTextNull(input))
                 {
                     if (Validation.IsNumberDouble(input))
                     {
@@ -167,7 +174,7 @@
             while (true)
             {
                 input = Console.ReadLine();
-                if (input != null && Validation.IsTextNull(input))
+                if (Validation.IsTextNull(input))
                 {
                     break;
                 }
