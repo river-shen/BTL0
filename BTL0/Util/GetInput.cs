@@ -15,26 +15,27 @@ namespace BTL0.Util
                 var input = Console.ReadLine();
                 if (input != null && Validation.IsDateTime(input))
                 {
-                    inputDateTime = DateTime.ParseExact(input,
-                                                        new string[] { "dd.MM.yyyy", "dd-MM-yyyy", "dd/MM/yyyy",
-                                                                       "d-M-yyyy", "d-MM-yyyy", "dd-M-yyyy",
-                                                                       "dd/M/yyyy", "d/M/yyyy", "d/MM/yyyy"},
-                                                        CultureInfo.InvariantCulture,
-                                                        DateTimeStyles.None);
+                    inputDateTime = FormatDateTime(input);
                     check = Validation.CheckPropertyCondition(inputDateTime.Year,
-                        Constant.Constant.MinYear, DateTime.Now.Year);
+                                            Constant.Constant.MinYear, DateTime.Now.Year);
                 }
                 else
                 {
                     Console.Write("Invalid input! Enter again: ");
                 }
             }
+
             return inputDateTime;
         }
-        
-        public static string? GetName()
+
+        public static string GetName()
         {
-            return GetData("Enter Student Name", Constant.Constant.MaxLengthName);
+            var input = GetData("Enter Student Name", Constant.Constant.MaxLengthName);
+            while (true)
+            {
+                if (input != null && !input.Any(char.IsDigit)) return input;
+                input = GetData("Mustn't contain number! Enter again", Constant.Constant.MaxLengthName);
+            }
         }
 
         public static string? GetAddress()
@@ -77,7 +78,7 @@ namespace BTL0.Util
         {
             return GetData("Enter GPA", Constant.Constant.MinGpa, Constant.Constant.MaxGpa);
         }
-        
+
         private static string? GetData(string type, int maxLength)
         {
             string? input = null;
@@ -89,9 +90,10 @@ namespace BTL0.Util
                 input = GetString();
                 check = Validation.CheckPropertyCondition(input, maxLength);
             }
+
             return input;
         }
-        
+
         private static double GetData(string type, double min, double max)
         {
             double inputNumberDouble = 0;
@@ -104,9 +106,10 @@ namespace BTL0.Util
                 check = Validation.CheckPropertyCondition(inputNumberDouble,
                     min, max);
             }
+
             return inputNumberDouble;
         }
-        
+
         private static int GetData(string type, int min, int max)
         {
             var inputNumberDouble = 0;
@@ -119,68 +122,56 @@ namespace BTL0.Util
                 check = Validation.CheckPropertyCondition(inputNumberDouble,
                     min, max);
             }
+
             return inputNumberDouble;
         }
 
         private static int GetInt()
         {
-            int inputNumberInt;
             while (true)
             {
                 var input = Console.ReadLine();
-                if (Validation.IsTextNull(input))
-                {
-                    if (Validation.IsNumberInt(input))
-                    {
-                        inputNumberInt = Convert.ToInt32(input);
-                        break;
-                    }
-                    Console.Write("Enter a number: ");
-                }
-                else
+                if (string.IsNullOrEmpty(input))
                 {
                     Console.Write("Enter again: ");
+                    continue;
                 }
+
+                if (Validation.IsNumberInt(input))  
+                    return Convert.ToInt32(input);
+                Console.Write("Enter again: ");
             }
-            return inputNumberInt;
         }
-        
+
         private static double GetDouble()
         {
-            double inputNumberDouble;
             while (true)
             {
                 var input = Console.ReadLine();
-                if (Validation.IsTextNull(input))
+                if (string.IsNullOrEmpty(input))
                 {
-                    if (Validation.IsNumberDouble(input))
-                    {
-                        inputNumberDouble = Convert.ToDouble(input);
-                        break;
-                    }
-                    Console.Write("Not a number! Enter again: ");
+                    Console.Write("Enter again: ");
+                    continue;
                 }
-                else
-                {
-                    Console.Write("Invalid Input! Enter again: ");
-                }
+
+                if (Validation.IsNumberDouble(input)) 
+                    return Convert.ToDouble(input);
+                Console.Write("Enter again: ");
             }
-            return inputNumberDouble;
         }
 
         private static string GetString()
         {
-            string? input;
             while (true)
             {
-                input = Console.ReadLine();
-                if (Validation.IsTextNull(input))
+                 var input = Console.ReadLine();
+                if (!string.IsNullOrEmpty(input))
                 {
-                    break;
+                    return input;
                 }
+
                 Console.Write("Invalid Input! Enter again: ");
             }
-            return input;
         }
 
         public static int GetId()
@@ -189,11 +180,17 @@ namespace BTL0.Util
             Console.Write("Enter ID: ");
             return (GetInt() - 1);
         }
-        
+
         public static int GetOption()
         {
             Console.Write("Enter Option: ");
             return GetInt();
+        }
+
+        public static DateTime FormatDateTime(string? input)
+        {
+            return DateTime.ParseExact(input, Validation.DateTimeFormat,
+                                         CultureInfo.InvariantCulture,DateTimeStyles.None);
         }
     }
 }

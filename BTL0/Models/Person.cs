@@ -1,4 +1,6 @@
-﻿namespace BTL0.Models
+﻿using BTL0.Util;
+
+namespace BTL0.Models
 {
     public class Person
     {
@@ -32,7 +34,7 @@
         {
             return $"Id: {Id+1}\n" +
                    $"Name: {Name}\n" +
-                   $"Date Of Birth: {DateOfBirth.ToString("dd/MM/yyyy")}\n" +
+                   $"Date Of Birth: {DateOfBirth.ToString(Validation.DateTimeFormat[0])}\n" +
                    $"Address: {Address}\n" +
                    $"Height: {Height} cm\n" +
                    $"Weight: {Weight} kg";

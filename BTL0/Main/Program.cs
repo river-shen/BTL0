@@ -16,7 +16,7 @@ namespace BTL0.Main
 
             manageStudent.ReadFromFile(path);
 
-            if (ManageStudent.Students.Count == 0)
+            if (!ManageStudent.Students.Any())
             {
                 Console.WriteLine("NO DATA!!!");
                 Console.WriteLine("Add Student!");

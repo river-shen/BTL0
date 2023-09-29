@@ -40,7 +40,7 @@
                 >= 7.5 => Rank.VeryGood,
                 >= 6.5 => Rank.Good,
                 >= 5 => Rank.Average,
-                _ => gpa >= 3 ? Rank.Weak : Rank.Poor
+                _ => gpa >= 3 ? Rank.Weak : Rank.Poor   
             };
         }
     }

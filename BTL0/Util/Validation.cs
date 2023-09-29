@@ -4,15 +4,17 @@ namespace BTL0.Util
 {
     public abstract class Validation
     {
-        public static bool IsDateTime(string date)
+        public static readonly string[] DateTimeFormat = new[]
         {
-            return DateTime.TryParseExact(date,
-                                          new string[] { "dd.MM.yyyy", "dd-MM-yyyy", "dd/MM/yyyy",
-                                                         "d-M-yyyy", "d-MM-yyyy", "dd-M-yyyy",
-                                                         "dd/M/yyyy", "d/M/yyyy", "d/MM/yyyy"},
-                                          CultureInfo.InvariantCulture,
-                                          DateTimeStyles.None,
-                                          out _);
+            "dd/MM/yyyy", "dd/M/yyyy", "d/M/yyyy", "d/MM/yyyy",
+            "dd-MM-yyyy", "d-M-yyyy", "d-MM-yyyy", "dd-M-yyyy",
+            "dd.MM.yyyy", "dd.M.yyyy", "d.MM.yyyy", "d.M.yyyy"
+        };
+        
+        public static bool IsDateTime(string input)
+        {
+            return DateTime.TryParseExact(input, DateTimeFormat, CultureInfo.InvariantCulture, 
+                                    DateTimeStyles.None, out _);
         }
 
         public static bool IsNumberDouble(string input)
@@ -23,11 +25,6 @@ namespace BTL0.Util
         public static bool IsNumberInt(string input)
         {
             return int.TryParse(input, out _);
-        }
-
-        public static bool IsTextNull(string input)
-        {
-            return input.Length != 0;
         }
 
         public static bool CheckPropertyCondition(double input, double min, double max)

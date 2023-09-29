@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Text;
+﻿using System.Text;
 using BTL0.Models;
 using BTL0.Util;
 
@@ -45,12 +44,9 @@ namespace BTL0.Controller
             Console.WriteLine("----------------------------------");
         }
 
-        public void ShowStudents()
+        public void ShowStudents()  
         {
-            foreach (var student in Students)
-            {
-                ShowStudent(student);
-            }
+            Students.ForEach(ShowStudent);
         }
 
         public List<Student> GetStudents()
@@ -62,8 +58,7 @@ namespace BTL0.Controller
         {
             return Students.FirstOrDefault(x => x.Id == id);
         }
-
-
+        
         public void UpdateStudent(int id)
         {
             var student = FindById(id);
@@ -130,14 +125,13 @@ namespace BTL0.Controller
             if (student == null) 
             {
                 Console.WriteLine("INVALID");
+                return;
             }
-            else
+
+            var isDelete = Students.Remove(student);
+            if (isDelete)
             {
-                var isDelete = Students.Remove(student);
-                if (isDelete)
-                {
-                    Console.WriteLine("Delete Successfully");
-                }
+                Console.WriteLine("Delete Successfully");
             }
         }
 
@@ -166,8 +160,7 @@ namespace BTL0.Controller
                 Console.WriteLine("{0,-5}  {1,5}%", gr.Key, 100 * gr.Count() / Students.Count);
             }
         }
-
-
+        
         public void ShowStudentByRank()
         {
             Rank rank;
@@ -209,17 +202,13 @@ namespace BTL0.Controller
                          where student.Rank == rank
                          select student;
             var enumerable = result.ToList();
-            if (enumerable.Any())
-            {
-                foreach (var student in enumerable)
-                {
-                    ShowStudent(student);
-                }
-            }
-            else
+            
+            if (!enumerable.Any())
             {
                 Console.WriteLine($"No student has rank {rank}");
+                return;
             }
+            enumerable.ForEach(ShowStudent);
         }
 
         public void SaveFile(List<Student> students, string path)
@@ -230,7 +219,7 @@ namespace BTL0.Controller
                 using var sw = new StreamWriter(path, false, Encoding.UTF8);
                 foreach (var line in students.Select(item => (item.Id + 1) + "\n" + 
                                                              item.Name + "\n" +
-                                                             item.DateOfBirth.ToString("dd/MM/yyyy") + "\n" +
+                                                             item.DateOfBirth.ToString(Validation.DateTimeFormat[0]) + "\n" +
                                                              item.Address + "\n" + 
                                                              item.Height + "\n" +
                                                              item.Weight + "\n" + 
@@ -240,7 +229,7 @@ namespace BTL0.Controller
                                                              item.Gpa))
                 {
                     sw.WriteLine(line);
-                }
+                } 
                 Console.WriteLine("Write Successfully");
                 Console.WriteLine("--------------------------------");
             } catch (Exception ex)
@@ -261,12 +250,7 @@ namespace BTL0.Controller
                     {
                         Id = int.Parse(line) - 1,
                         Name = sr.ReadLine(),
-                        DateOfBirth = DateTime.ParseExact(sr.ReadLine() ?? string.Empty,
-                                                           new string[] { "dd.MM.yyyy", "dd-MM-yyyy", "dd/MM/yyyy",
-                                                                            "d-M-yyyy", "d-MM-yyyy", "dd-M-yyyy",
-                                                                            "dd/M/yyyy", "d/M/yyyy", "d/MM/yyyy"},
-                                                           CultureInfo.InvariantCulture,
-                                                           DateTimeStyles.None),
+                        DateOfBirth = GetInput.FormatDateTime(sr.ReadLine()),
                         Address = sr.ReadLine(),
                         Height = double.Parse(sr.ReadLine() ?? string.Empty),
                         Weight = double.Parse(sr.ReadLine() ?? string.Empty),
